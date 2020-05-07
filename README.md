@@ -22,6 +22,12 @@ place a 1.
 
 ## Your task
 
+Your task is to write a function that generates a given number of rows of
+pascal's triangle. You can find a skeleton implementation of the function in
+`pascals_triangle.h` and `pascals_triangle.cpp`.
+
+Here are the steps you should follow:
+
 1. Make sure you can build the project.
   ```bash
   mkdir pascals_triangle
@@ -49,6 +55,10 @@ place a 1.
 
 #### Q: What C++ standard can I use
 The project is set up to allow C++17. Please stick to that.
+
+#### Q: Can my solution be header-only?
+Sure. In the submission form, where it asks for the contents of the cpp file,
+just leave the box empty.
 
 #### Q: Can I use any third-party libraries?
 You may use anything in the C++ standard library. If you wish, you may also use
