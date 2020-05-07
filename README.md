@@ -64,7 +64,7 @@ just leave the box empty.
 You may use anything in the C++ standard library. If you wish, you may also use
 the [Range v3 library](https://ericniebler.github.io/range-v3/) and the
 [fmt](https://fmt.dev/latest/) library, both of which are included in the
-third-party directory. Though they are *certainly not necessary* to solve the
+thirdparty directory. Though they are *certainly not necessary* to solve the
 challenge. The CMake project is set up to allow you to use both libraries
 straight away in your source files.
 
