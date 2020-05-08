@@ -19,9 +19,10 @@ auto print_vec(std::vector<T> const& row) {
 }
 
 // Collect range of ranges into a vector of vectors
-auto to_vec_of_vec =
-    [](auto const& range) -> std::vector<std::vector<uint64_t>> {
-  return range | rv::transform(ranges::to_vector) | ranges::to_vector;
+template <typename Range>
+auto to_vec_of_vec(Range&& range) -> std::vector<std::vector<uint64_t>> {
+  return std::forward<Range>(range) |
+         rv::transform(ranges::to_vector) | ranges::to_vector;
 };
 }  // namespace
 
