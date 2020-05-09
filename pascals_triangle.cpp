@@ -1,7 +1,7 @@
 #include "pascals_triangle.h"
 
-#include <vector>
 #include <cstdint>
+#include <vector>
 
 namespace SOLUTION_NAMESPACE {  // Please do not modify this line
 
