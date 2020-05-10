@@ -69,4 +69,9 @@ target_link_libraries(pascals_triangle_tests
 target_compile_definitions(pascals_triangle_tests
   PRIVATE
     SOLUTION_NAMESPACE=pascals_triangle
+    SOLUTION_NAME_QUOTED=\"pascals_triangle\"
+    SOLUTION_HEADER=\"pascals_triangle.h\"
 )
+
+# ------------------------------------------------------------------------------
+add_subdirectory(results)

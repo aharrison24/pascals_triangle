@@ -5,7 +5,7 @@
 #include <range/v3/view/transform.hpp>
 #include <vector>
 
-#include "pascals_triangle.h"
+#include SOLUTION_HEADER
 
 // -----------------------------------------------------------------------------
 // Test output helpers
@@ -41,7 +41,8 @@ struct StringMaker<std::vector<std::vector<T>>> {
 // -----------------------------------------------------------------------------
 using namespace SOLUTION_NAMESPACE;
 
-TEST_SUITE_BEGIN("pascals_triangle");
+#define EXPAND(x) x
+TEST_SUITE_BEGIN(EXPAND(SOLUTION_NAME_QUOTED));
 
 TEST_CASE("0 rows") {
   auto const result = to_vec_of_vec(generate_rows(0));
