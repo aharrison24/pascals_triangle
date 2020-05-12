@@ -39,7 +39,7 @@ struct StringMaker<std::vector<std::vector<T>>> {
 // -----------------------------------------------------------------------------
 // Tests
 // -----------------------------------------------------------------------------
-using namespace SOLUTION_NAMESPACE;
+using SOLUTION_NAMESPACE::generate_rows;
 
 #define EXPAND(x) x
 TEST_SUITE_BEGIN(EXPAND(SOLUTION_NAME_QUOTED));
