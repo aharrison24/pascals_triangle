@@ -10,31 +10,36 @@
 # I discovered many reasons why. We're only globbing so that new solutions can
 # be dropped in to the project without needing to update the build scripts.
 
-file(GLOB solution_dirs
+file(GLOB solution_headers
   CONFIGURE_DEPENDS
-  LIST_DIRECTORIES TRUE
-  "${CMAKE_CURRENT_SOURCE_DIR}/solutions/*"
+  "${CMAKE_CURRENT_SOURCE_DIR}/solutions/*.h"
 )
 
 set(solution_names)
-foreach(solution_dir IN LISTS solution_dirs)
-  if(NOT EXISTS ${solution_dir}/pascals_triangle.h)
-    continue()
-  endif()
-
-  file(RELATIVE_PATH solution_name ${CMAKE_CURRENT_SOURCE_DIR}/solutions ${solution_dir})
+foreach(solution_header IN LISTS solution_headers)
+  file(RELATIVE_PATH
+    solution_header_file                  # Output var
+    ${CMAKE_CURRENT_SOURCE_DIR}/solutions # Base path
+    ${solution_header}                    # Input path
+  )
+  string(REGEX REPLACE
+    "^(.*)\\.h$"                          # Pattern
+    "\\1"                                 # Replacement
+    solution_name                         # Output var
+    "${solution_header_file}"             # Input string
+  )
   list(APPEND solution_names ${solution_name})
 endforeach()
 
 # ------------------------------------------------------------------------------
 function(add_solution_to_lib LIB_NAME SOLUTION_NAME)
   # Add the headers to the library to make them appear in IDEs
-  set(header_file ${CMAKE_CURRENT_SOURCE_DIR}/solutions/${SOLUTION_NAME}/pascals_triangle.h)
+  set(header_file ${CMAKE_CURRENT_SOURCE_DIR}/solutions/${SOLUTION_NAME}.h)
   target_sources(${LIB_NAME} PRIVATE
     $<BUILD_INTERFACE:${header_file}>
   )
 
-  set(cpp_file ${CMAKE_CURRENT_SOURCE_DIR}/solutions/${SOLUTION_NAME}/pascals_triangle.cpp)
+  set(cpp_file ${CMAKE_CURRENT_SOURCE_DIR}/solutions/${SOLUTION_NAME}.cpp)
   if(EXISTS ${cpp_file})
     target_sources(${LIB_NAME} PRIVATE ${cpp_file})
     set_property(
@@ -68,7 +73,7 @@ endif()
 function(add_test_suite_for_solution
     LIB_NAME SOLUTION_NAME TEST_SUITE_FILE SYMLINK_SUFFIX)
 
-  set(header_file ${CMAKE_CURRENT_SOURCE_DIR}/solutions/${SOLUTION_NAME}/pascals_triangle.h)
+  set(header_file ${CMAKE_CURRENT_SOURCE_DIR}/solutions/${SOLUTION_NAME}.h)
 
   # Make a new symlink to the tests source file for every implementation.
   # We'll provide different compile definitions to each one. The symlink is
