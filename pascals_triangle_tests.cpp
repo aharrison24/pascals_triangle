@@ -1,11 +1,11 @@
+#include SOLUTION_HEADER
+
 #include <doctest/doctest.h>
 #include <fmt/format.h>
 
 #include <range/v3/range/conversion.hpp>
 #include <range/v3/view/transform.hpp>
 #include <vector>
-
-#include SOLUTION_HEADER
 
 // -----------------------------------------------------------------------------
 // Test output helpers
