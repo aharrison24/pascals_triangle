@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Memory allocation matters - Pascal's Triangle C++ coding challenge</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A discussion of C++ programming techniques through the medium of Pascal's Triangle">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../pascals_triangle.html">Pascal's Triangle Coding Challenge</a></li><li class="chapter-item expanded affix "><a href="../submissions.html">Submissions</a></li><li class="chapter-item expanded "><a href="../loops/loops.html"><strong aria-hidden="true">1.</strong> Loops make the world go round (and round...)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../loops/dont_do_unnecessary_work.html"><strong aria-hidden="true">1.1.</strong> Don't do more work than you need to?</a></li><li class="chapter-item expanded "><a href="../loops/memory_allocation_matters.html" class="active"><strong aria-hidden="true">1.2.</strong> Memory allocation matters</a></li><li class="chapter-item expanded "><a href="../loops/tracing_function_calls.html"><strong aria-hidden="true">1.3.</strong> Tracing function calls</a></li><li class="chapter-item expanded "><a href="../loops/cost_of_allocation.html"><strong aria-hidden="true">1.4.</strong> Cost of allocation</a></li><li class="chapter-item expanded "><a href="../loops/be_kind_to_your_cache.html"><strong aria-hidden="true">1.5.</strong> Be kind to your cache</a></li><li class="chapter-item expanded "><a href="../loops/span.html"><strong aria-hidden="true">1.6.</strong> When everything looks like a nail</a></li><li class="chapter-item expanded "><a href="../loops/summary.html"><strong aria-hidden="true">1.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../everything_is_a_matrix.html"><strong aria-hidden="true">2.</strong> Everything is a matrix</a></li><li class="chapter-item expanded "><a href="../stl_algorithms.html"><strong aria-hidden="true">3.</strong> STL algorithms</a></li><li class="chapter-item expanded "><a href="../threads/threads_to_the_rescue.html"><strong aria-hidden="true">4.</strong> Threads to the rescue!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads/async.html"><strong aria-hidden="true">4.1.</strong> Making a stink about std::async</a></li><li class="chapter-item expanded "><a href="../threads/work_stealing.html"><strong aria-hidden="true">4.2.</strong> Work stealing</a></li><li class="chapter-item expanded "><a href="../threads/allocators.html"><strong aria-hidden="true">4.3.</strong> Allocators</a></li><li class="chapter-item expanded "><a href="../threads/amdahls_law.html"><strong aria-hidden="true">4.4.</strong> Use moar cores!</a></li><li class="chapter-item expanded "><a href="../threads/cleverness.html"><strong aria-hidden="true">4.5.</strong> Clever ain't always fast</a></li><li class="chapter-item expanded "><a href="../threads/summary.html"><strong aria-hidden="true">4.6.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../all_your_tests_are_terrible.html"><strong aria-hidden="true">5.</strong> All your tests are terrible!</a></li><li class="chapter-item expanded "><a href="../laziness.html"><strong aria-hidden="true">6.</strong> Laziness is the first step towards efficiency</a></li><li class="chapter-item expanded "><a href="../ranges.html"><strong aria-hidden="true">7.</strong> How to kill your compile times</a></li><li class="chapter-item expanded "><a href="../constexpr_cake.html"><strong aria-hidden="true">8.</strong> Have your constexpr cake and eat it</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../optimizer_magic.html"><strong aria-hidden="true">8.1.</strong> The optimizer is magic</a></li></ol></li><li class="chapter-item expanded "><a href="../property_based_testing.html"><strong aria-hidden="true">9.</strong> A surprise win for property based testing</a></li><li class="chapter-item expanded "><a href="../code_alignment_issues.html"><strong aria-hidden="true">10.</strong> A free 50% speed boost. Randomly.</a></li><li class="chapter-item expanded "><a href="../conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded "><a href="../appendices/problem_statement.html"><strong aria-hidden="true">12.</strong> Appendix I - Original problem statement</a></li><li class="chapter-item expanded "><a href="../appendices/test_setup.html"><strong aria-hidden="true">13.</strong> Appendix II - Benchmark hardware and setup</a></li><li class="chapter-item expanded "><a href="../submissions_appendix.html"><strong aria-hidden="true">14.</strong> Appendix III - Submissions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../solutions/Baseline.html"><strong aria-hidden="true">14.1.</strong> Baseline</a></li><li class="chapter-item expanded "><a href="../solutions/AskingCrow.html"><strong aria-hidden="true">14.2.</strong> AskingCrow</a></li><li class="chapter-item expanded "><a href="../solutions/BumbleBeetle.html"><strong aria-hidden="true">14.3.</strong> BumbleBeetle</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine.html"><strong aria-hidden="true">14.4.</strong> CluelessWolverine</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine2.html"><strong aria-hidden="true">14.5.</strong> CluelessWolverine2</a></li><li class="chapter-item expanded "><a href="../solutions/Fortran4Ever.html"><strong aria-hidden="true">14.6.</strong> Fortran4Ever</a></li><li class="chapter-item expanded "><a href="../solutions/simple_basic_solution.html"><strong aria-hidden="true">14.7.</strong> simple_basic_solution</a></li><li class="chapter-item expanded "><a href="../solutions/user_usery.html"><strong aria-hidden="true">14.8.</strong> user_usery</a></li><li class="chapter-item expanded "><a href="../solutions/FlyingDesitter_arh.html"><strong aria-hidden="true">14.9.</strong> FlyingDesitter_arh</a></li><li class="chapter-item expanded "><a href="../solutions/pascalsTriangle.for.html"><strong aria-hidden="true">14.10.</strong> pascalsTriangle.for</a></li><li class="chapter-item expanded "><a href="../solutions/GroovyZone.html"><strong aria-hidden="true">14.11.</strong> GroovyZone</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader.html"><strong aria-hidden="true">14.12.</strong> LordVader</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader2_arh.html"><strong aria-hidden="true">14.13.</strong> LordVader2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf.html"><strong aria-hidden="true">14.14.</strong> Pixelf</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_arh.html"><strong aria-hidden="true">14.15.</strong> Pixelf_TBB_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html"><strong aria-hidden="true">14.16.</strong> Pixelf_TBB_scalable_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_boost_arh.html"><strong aria-hidden="true">14.17.</strong> Pixelf_TBB_boost_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_monotonic_alloc_arh.html"><strong aria-hidden="true">14.18.</strong> Pixelf_TBB_monotonic_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_single_array_arh.html"><strong aria-hidden="true">14.19.</strong> Pixelf_TBB_single_array_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_spans_arh.html"><strong aria-hidden="true">14.20.</strong> Pixelf_TBB_spans_arh</a></li><li class="chapter-item expanded "><a href="../solutions/DigitalGerbil.html"><strong aria-hidden="true">14.21.</strong> DigitalGerbil</a></li><li class="chapter-item expanded "><a href="../solutions/TerrificPhantom.html"><strong aria-hidden="true">14.22.</strong> TerrificPhantom</a></li><li class="chapter-item expanded "><a href="../solutions/Porpoison.html"><strong aria-hidden="true">14.23.</strong> Porpoison</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana.html"><strong aria-hidden="true">14.24.</strong> ArchBanana</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana2_arh.html"><strong aria-hidden="true">14.25.</strong> ArchBanana2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/EvilDoughnut.html"><strong aria-hidden="true">14.26.</strong> EvilDoughnut</a></li><li class="chapter-item expanded "><a href="../solutions/FrostyMongoose.html"><strong aria-hidden="true">14.27.</strong> FrostyMongoose</a></li><li class="chapter-item expanded "><a href="../solutions/Proteus.html"><strong aria-hidden="true">14.28.</strong> Proteus</a></li><li class="chapter-item expanded "><a href="../solutions/Erwin.html"><strong aria-hidden="true">14.29.</strong> Erwin</a></li><li class="chapter-item expanded "><a href="../solutions/FireFly.html"><strong aria-hidden="true">14.30.</strong> FireFly</a></li><li class="chapter-item expanded "><a href="../solutions/LightningHippo_arh.html"><strong aria-hidden="true">14.31.</strong> LightningHippo_arh</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pascal's Triangle C++ coding challenge</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <style>
+img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+</style>
+<h1><a class="header" href="#memory-allocation-matters" id="memory-allocation-matters">Memory allocation matters</a></h1>
+<p>One of the slowest things we can do in a computer program is to allocate memory.
+The default memory allocator has to deal with callers requiring chunks of memory
+of all different sizes and for wildly varying durations. It needs to be able to
+reuse returned memory chunks where possible, but avoid too much heap
+fragmentation. It has no priors on the memory access patterns it will be
+exposed to, and it must be thread safe. General purpose memory allocators are
+<em>complex</em> and have to do a lot of book-keeping. That makes them expensive and
+non-deterministic.</p>
+<p>Once you've made sure that your algorithm is not doing anything overtly stupid
+and that it has appropriate computational complexity, the next most fruitful
+avenue for achieving performance gains is usually to be found in <a href="https://www.youtube.com/watch?v=ZXTI5iWHhrg">minimizing
+memory allocations</a>.</p>
+<p>For the moment we will concentrate mainly on the differences between the lowest
+performing raw-loop solution, <a href="../solutions/AskingCrow.html">AskingCrow</a> and the
+highest performing raw-loop solution, <a href="../solutions/CluelessWolverine2.html">CluelessWolverine2</a>.</p>
+<p>We're going to use three powerful profiling tools to peer in to the inner
+workings of them both and try to understand the performance disparity.</p>
+<h1><a class="header" href="#tracing-allocations-with-heaptrack" id="tracing-allocations-with-heaptrack">Tracing allocations with HeapTrack</a></h1>
+<p>We'll begin by analysing the memory usage of the two solutions using the
+excellent <a href="https://github.com/KDE/heaptrack">HeapTrack</a> tool. I set up each
+solution to generate 20,000 rows of pascal's triangle and used HeapTrack to
+trace all of the memory allocations.</p>
+<p>Where the Heaptrack plots have multiple colours, each colour corresponds to a
+different source of allocations. The allocation sources are stacked on top of
+each other, with the worst offender having the largest surface area and
+appearing at the bottom of the stack.</p>
+<h2><a class="header" href="#number-of-allocations" id="number-of-allocations">Number of allocations</a></h2>
+<h4><a class="header" href="#cluelesswolverine2---number-of-allocations-for-20000-row-triangle" id="cluelesswolverine2---number-of-allocations-for-20000-row-triangle">CluelessWolverine2 - Number of allocations (for 20,000 row triangle)</a></h4>
+<p><a href="../images/heaptrack_CluelessWolverine2_allocations.png"><img src="../images/heaptrack_CluelessWolverine2_allocations.png" alt="" /></a></p>
+<p><a href="../solutions/CluelessWolverine2.html">CluelessWolverine2</a> makes 20,000
+allocations<sup class="footnote-reference"><a href="#1">1</a></sup> -- one for each row. Seems reasonable, given that every row
+has a <code>std::vector</code> of its own. The graph is all one colour, indicating a single
+source of allocations.</p>
+<h4><a class="header" href="#askingcrow---number-of-allocations-for-20000-row-triangle" id="askingcrow---number-of-allocations-for-20000-row-triangle">AskingCrow - Number of allocations (for 20,000 row triangle)</a></h4>
+<p>I couldn't show HeapTrack's tooltips in the screenshot, so I've added my own
+high-quality labelling to show the sources of the allocations.
+<a href="../images/heaptrack_AskingCrow_allocations.png"><img src="../images/heaptrack_AskingCrow_allocations.png" alt="" /></a></p>
+<p><a href="../solutions/AskingCrow.html">AskingCrow</a> makes over <strong>300,000 allocations</strong>.
+That can't be healthy! Interestingly, the largest source of allocations by far
+appears to be the call to <code>push_back</code> on the <code>new_row</code> vector.</p>
+<h2><a class="header" href="#instantaneous-amount-of-ram-allocated" id="instantaneous-amount-of-ram-allocated">Instantaneous amount of RAM allocated</a></h2>
+<p>What about the <em>amount</em> of memory allocated?</p>
+<h4><a class="header" href="#cluelesswolverine2---instantaneous-amount-consumed-for-20000-row-triangle" id="cluelesswolverine2---instantaneous-amount-consumed-for-20000-row-triangle">CluelessWolverine2 - Instantaneous amount consumed (for 20,000 row triangle)</a></h4>
+<p><a href="../images/heaptrack_CluelessWolverine2_consumed.png"><img src="../images/heaptrack_CluelessWolverine2_consumed.png" alt="" /></a></p>
+<h4><a class="header" href="#askingcrow---instantaneous-amount-consumed-for-20000-row-triangle" id="askingcrow---instantaneous-amount-consumed-for-20000-row-triangle">AskingCrow - Instantaneous amount consumed (for 20,000 row triangle)</a></h4>
+<p><a href="../images/heaptrack_AskingCrow_consumed.png"><img src="../images/heaptrack_AskingCrow_consumed.png" alt="" /></a></p>
+<p>Both solutions have the same peak memory consumption of 1.6Gb, but that doesn't
+tell the whole story. It's instructive look at the cumulative amount allocated.</p>
+<h2><a class="header" href="#cumulative-amount-of-ram-allocated" id="cumulative-amount-of-ram-allocated">Cumulative amount of RAM allocated</a></h2>
+<h4><a class="header" href="#cluelesswolverine2---cumulative-amount-allocated-for-20000-row-triangle" id="cluelesswolverine2---cumulative-amount-allocated-for-20000-row-triangle">CluelessWolverine2 - Cumulative amount allocated (for 20,000 row triangle)</a></h4>
+<p><a href="../images/heaptrack_CluelessWolverine2_allocated.png"><img src="../images/heaptrack_CluelessWolverine2_allocated.png" alt="" /></a></p>
+<h4><a class="header" href="#askingcrow---cumulative-amount-allocated-for-20000-row-triangle" id="askingcrow---cumulative-amount-allocated-for-20000-row-triangle">AskingCrow - Cumulative amount allocated (for 20,000 row triangle)</a></h4>
+<p><a href="../images/heaptrack_AskingCrow_allocated.png"><img src="../images/heaptrack_AskingCrow_allocated.png" alt="" /></a></p>
+<p><a href="../solutions/CluelessWolverine2.html">CluelessWolverine2</a>
+allocates a total of 1.6Gb, then gives it all back at the end. But
+<a href="../solutions/AskingCrow.html">AskingCrow</a> allocates a cumulative total of 8.0Gb!
+Most of that churn comes from memory allocated <em>and deallocated</em> during the course of
+generating each row of the triangle.</p>
+<p>Click on to the next section, where we will use the <code>uftrace</code> tool to get
+another view of the situation.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>OK, the executable actually makes more allocations than that, because of
+the command-line parser, <a href="https://github.com/bfgroup/Lyra">Lyra</a>. Let's
+agree to pretend those don't exist, hmm?</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../loops/dont_do_unnecessary_work.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../loops/tracing_function_calls.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../loops/dont_do_unnecessary_work.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../loops/tracing_function_calls.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

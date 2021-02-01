@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Clever ain't always fast - Pascal's Triangle C++ coding challenge</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A discussion of C++ programming techniques through the medium of Pascal's Triangle">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../pascals_triangle.html">Pascal's Triangle Coding Challenge</a></li><li class="chapter-item expanded affix "><a href="../submissions.html">Submissions</a></li><li class="chapter-item expanded "><a href="../loops/loops.html"><strong aria-hidden="true">1.</strong> Loops make the world go round (and round...)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../loops/dont_do_unnecessary_work.html"><strong aria-hidden="true">1.1.</strong> Don't do more work than you need to?</a></li><li class="chapter-item expanded "><a href="../loops/memory_allocation_matters.html"><strong aria-hidden="true">1.2.</strong> Memory allocation matters</a></li><li class="chapter-item expanded "><a href="../loops/tracing_function_calls.html"><strong aria-hidden="true">1.3.</strong> Tracing function calls</a></li><li class="chapter-item expanded "><a href="../loops/cost_of_allocation.html"><strong aria-hidden="true">1.4.</strong> Cost of allocation</a></li><li class="chapter-item expanded "><a href="../loops/be_kind_to_your_cache.html"><strong aria-hidden="true">1.5.</strong> Be kind to your cache</a></li><li class="chapter-item expanded "><a href="../loops/span.html"><strong aria-hidden="true">1.6.</strong> When everything looks like a nail</a></li><li class="chapter-item expanded "><a href="../loops/summary.html"><strong aria-hidden="true">1.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../everything_is_a_matrix.html"><strong aria-hidden="true">2.</strong> Everything is a matrix</a></li><li class="chapter-item expanded "><a href="../stl_algorithms.html"><strong aria-hidden="true">3.</strong> STL algorithms</a></li><li class="chapter-item expanded "><a href="../threads/threads_to_the_rescue.html"><strong aria-hidden="true">4.</strong> Threads to the rescue!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads/async.html"><strong aria-hidden="true">4.1.</strong> Making a stink about std::async</a></li><li class="chapter-item expanded "><a href="../threads/work_stealing.html"><strong aria-hidden="true">4.2.</strong> Work stealing</a></li><li class="chapter-item expanded "><a href="../threads/allocators.html"><strong aria-hidden="true">4.3.</strong> Allocators</a></li><li class="chapter-item expanded "><a href="../threads/amdahls_law.html"><strong aria-hidden="true">4.4.</strong> Use moar cores!</a></li><li class="chapter-item expanded "><a href="../threads/cleverness.html" class="active"><strong aria-hidden="true">4.5.</strong> Clever ain't always fast</a></li><li class="chapter-item expanded "><a href="../threads/summary.html"><strong aria-hidden="true">4.6.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../all_your_tests_are_terrible.html"><strong aria-hidden="true">5.</strong> All your tests are terrible!</a></li><li class="chapter-item expanded "><a href="../laziness.html"><strong aria-hidden="true">6.</strong> Laziness is the first step towards efficiency</a></li><li class="chapter-item expanded "><a href="../ranges.html"><strong aria-hidden="true">7.</strong> How to kill your compile times</a></li><li class="chapter-item expanded "><a href="../constexpr_cake.html"><strong aria-hidden="true">8.</strong> Have your constexpr cake and eat it</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../optimizer_magic.html"><strong aria-hidden="true">8.1.</strong> The optimizer is magic</a></li></ol></li><li class="chapter-item expanded "><a href="../property_based_testing.html"><strong aria-hidden="true">9.</strong> A surprise win for property based testing</a></li><li class="chapter-item expanded "><a href="../code_alignment_issues.html"><strong aria-hidden="true">10.</strong> A free 50% speed boost. Randomly.</a></li><li class="chapter-item expanded "><a href="../conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded "><a href="../appendices/problem_statement.html"><strong aria-hidden="true">12.</strong> Appendix I - Original problem statement</a></li><li class="chapter-item expanded "><a href="../appendices/test_setup.html"><strong aria-hidden="true">13.</strong> Appendix II - Benchmark hardware and setup</a></li><li class="chapter-item expanded "><a href="../submissions_appendix.html"><strong aria-hidden="true">14.</strong> Appendix III - Submissions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../solutions/Baseline.html"><strong aria-hidden="true">14.1.</strong> Baseline</a></li><li class="chapter-item expanded "><a href="../solutions/AskingCrow.html"><strong aria-hidden="true">14.2.</strong> AskingCrow</a></li><li class="chapter-item expanded "><a href="../solutions/BumbleBeetle.html"><strong aria-hidden="true">14.3.</strong> BumbleBeetle</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine.html"><strong aria-hidden="true">14.4.</strong> CluelessWolverine</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine2.html"><strong aria-hidden="true">14.5.</strong> CluelessWolverine2</a></li><li class="chapter-item expanded "><a href="../solutions/Fortran4Ever.html"><strong aria-hidden="true">14.6.</strong> Fortran4Ever</a></li><li class="chapter-item expanded "><a href="../solutions/simple_basic_solution.html"><strong aria-hidden="true">14.7.</strong> simple_basic_solution</a></li><li class="chapter-item expanded "><a href="../solutions/user_usery.html"><strong aria-hidden="true">14.8.</strong> user_usery</a></li><li class="chapter-item expanded "><a href="../solutions/FlyingDesitter_arh.html"><strong aria-hidden="true">14.9.</strong> FlyingDesitter_arh</a></li><li class="chapter-item expanded "><a href="../solutions/pascalsTriangle.for.html"><strong aria-hidden="true">14.10.</strong> pascalsTriangle.for</a></li><li class="chapter-item expanded "><a href="../solutions/GroovyZone.html"><strong aria-hidden="true">14.11.</strong> GroovyZone</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader.html"><strong aria-hidden="true">14.12.</strong> LordVader</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader2_arh.html"><strong aria-hidden="true">14.13.</strong> LordVader2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf.html"><strong aria-hidden="true">14.14.</strong> Pixelf</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_arh.html"><strong aria-hidden="true">14.15.</strong> Pixelf_TBB_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html"><strong aria-hidden="true">14.16.</strong> Pixelf_TBB_scalable_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_boost_arh.html"><strong aria-hidden="true">14.17.</strong> Pixelf_TBB_boost_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_monotonic_alloc_arh.html"><strong aria-hidden="true">14.18.</strong> Pixelf_TBB_monotonic_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_single_array_arh.html"><strong aria-hidden="true">14.19.</strong> Pixelf_TBB_single_array_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_spans_arh.html"><strong aria-hidden="true">14.20.</strong> Pixelf_TBB_spans_arh</a></li><li class="chapter-item expanded "><a href="../solutions/DigitalGerbil.html"><strong aria-hidden="true">14.21.</strong> DigitalGerbil</a></li><li class="chapter-item expanded "><a href="../solutions/TerrificPhantom.html"><strong aria-hidden="true">14.22.</strong> TerrificPhantom</a></li><li class="chapter-item expanded "><a href="../solutions/Porpoison.html"><strong aria-hidden="true">14.23.</strong> Porpoison</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana.html"><strong aria-hidden="true">14.24.</strong> ArchBanana</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana2_arh.html"><strong aria-hidden="true">14.25.</strong> ArchBanana2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/EvilDoughnut.html"><strong aria-hidden="true">14.26.</strong> EvilDoughnut</a></li><li class="chapter-item expanded "><a href="../solutions/FrostyMongoose.html"><strong aria-hidden="true">14.27.</strong> FrostyMongoose</a></li><li class="chapter-item expanded "><a href="../solutions/Proteus.html"><strong aria-hidden="true">14.28.</strong> Proteus</a></li><li class="chapter-item expanded "><a href="../solutions/Erwin.html"><strong aria-hidden="true">14.29.</strong> Erwin</a></li><li class="chapter-item expanded "><a href="../solutions/FireFly.html"><strong aria-hidden="true">14.30.</strong> FireFly</a></li><li class="chapter-item expanded "><a href="../solutions/LightningHippo_arh.html"><strong aria-hidden="true">14.31.</strong> LightningHippo_arh</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pascal's Triangle C++ coding challenge</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#data-dependencies" id="data-dependencies">Data dependencies</a></h1>
+<p>(new title - TBC)</p>
+<p style="color:red;font-size:30px;">Section not complete</p>
+<p>Previous sections have hopefully convinced you that the overhead of multi-
+threading makes it unsuitable for short-lived tasks. Even with all our extra efforts, the result is so much .....</p>
+<p>But you may still be
+wondering why <a href="../solutions/Pixelf.html">Pixelf</a> and its derivatives are <strong>so
+much slower</strong> than the simple nested for-loop in the
+<a href="../solutions/Baseline.html">Baseline</a> solution. The reason is quite
+interesting, and one shrewd reviewer of <a href="../solutions/Pixelf.html">Pixelf</a>
+put their finger right on it. It comes down to the way that the row
+values are computed, and how well the compiler can optimise it.</p>
+<p>The single-threaded solutions generally chose to compute row elements by summing
+pairs of elements from the <em>previous</em> row. <a href="../solutions/Pixelf.html">Pixelf</a>
+wasn't able to do that, because every row is computed on a different thread.
+That means the order of computation is no longer deterministic. The previous
+row may not even be <em>available</em> when you want to read its values. You could try
+to add some synchronisation and ensure rows are computed in sequential order,
+but then of course you've totally negated any benefit of using multiple threads.</p>
+<p><a href="../solutions/Pixelf.html">Pixelf's</a> author needed a way of computing rows
+<em>completely independently of each other</em>. They used the fact that the elements
+of Pascal's Triangle are all binomial coefficients, where the <em>k</em>th entry of the
+<em>n</em>th row can be computed as &quot;n choose k&quot;, or</p>
+<img src="../images/n_choose_k.svg" alt="n choose k equation" height="70px">
+<p>There's a nice recurrence relation that let's us compute the values of a single
+row sequentially:</p>
+<img src="../images/binomial_recurrence.svg" alt="binomial recurrence relation" height="70px">
+<p>We can see the two approaches in these code snippets:</p>
+<h4><a class="header" href="#baseline" id="baseline">Baseline</a></h4>
+<pre><code class="language-c++">for (uint32_t j = 1; j &lt; i; ++j) {
+  // Computes row elements by summing values from previous rows
+  row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+}
+</code></pre>
+<h4><a class="header" href="#pixelf" id="pixelf">Pixelf</a></h4>
+<pre><code class="language-c++">for (uint32_t k = 1; k &lt; n / 2 + 1; ++k) {
+  // Recursively computes row elements
+  row[k] = (row[k - 1] * (n - k)) / k;
+}
+// Copies elements from the first half into the second half (in reverse order)
+std::copy(row.begin(), row.begin() + n / 2, row.rbegin());
+</code></pre>
+<p><em>Pixelf uses 1-based row indexing, so the recurrence relation is slightly
+different to the equation stated above.</em></p>
+<h2><a class="header" href="#how-to-prevent-the-compiler-from-helping-you" id="how-to-prevent-the-compiler-from-helping-you">How to prevent the compiler from helping you</a></h2>
+<p>It's clear that <a href="../solutions/Baseline.html">Baseline</a> requires a single addition
+operation to compute new row elements. <a href="../solutions/Pixelf.html">Pixelf</a> needs 1
+subtraction, 1 multiplication and a division operation. But there's actually a bit
+more to it than that.</p>
+<p>Consider the following eerily familiar chunk of code. We'll call it <code>unicorn_loop</code>
+because of its mysterious super-powers:</p>
+<pre><code class="language-c++">void unicorn_loop(uint64_t const* prev_row, uint64_t* __restrict next_row) {
+  for (int i = 0; i&lt;8; ++i) {
+      next_row[i] = prev_row[i] + prev_row[i+1];
+  }
+}
+</code></pre>
+<p>The <code>__restrict</code> keyword is just there to tell the compiler that <code>next_row</code> and
+<code>prev_row</code> are in different memory locations, so that it can optimise efficiently.</p>
+<p>I compiled it with two different sets of flags on the gcc compiler:</p>
+<ul>
+<li><code>-O3 -mno-sse</code> (all optimisations, but no SIMD instructions allowed)</li>
+<li><code>-O3 -mavx512f</code> (all optimisation, avx512 instructions allowed)</li>
+</ul>
+<p>As you can see, the difference is huge:</p>
+<table>
+<tr>
+<th>
+No vectorisation (-O3 -mno-sse)
+</th>
+<th>
+avx512 instructions allowed (-O3 -mavx512f)
+</th>
+</tr>
+<tr>
+<td valign="top">
+<pre><code class="language-c++"><!--
+-->unicorn_loop(unsigned long const*, unsigned long*):
+        mov     rdx, QWORD PTR [rdi]
+        mov     rax, QWORD PTR [rdi+8]
+        add     rdx, rax
+        add     rax, QWORD PTR [rdi+16]
+        mov     QWORD PTR [rsi+8], rax
+        mov     rax, QWORD PTR [rdi+16]
+        add     rax, QWORD PTR [rdi+24]
+        mov     QWORD PTR [rsi], rdx
+        mov     QWORD PTR [rsi+16], rax
+        mov     rax, QWORD PTR [rdi+24]
+        add     rax, QWORD PTR [rdi+32]
+        mov     rdx, QWORD PTR [rdi+48]
+        mov     QWORD PTR [rsi+24], rax
+        mov     rax, QWORD PTR [rdi+32]
+        add     rax, QWORD PTR [rdi+40]
+        mov     QWORD PTR [rsi+32], rax
+        mov     rax, QWORD PTR [rdi+40]
+        add     rax, QWORD PTR [rdi+48]
+        mov     QWORD PTR [rsi+40], rax
+        mov     rax, QWORD PTR [rdi+56]
+        add     rdx, rax
+        add     rax, QWORD PTR [rdi+64]
+        mov     QWORD PTR [rsi+48], rdx
+        mov     QWORD PTR [rsi+56], rax
+        ret</code></pre>
+</td>
+<td  valign="top">
+<pre><code class="language-c++"><!--
+-->unicorn_loop(unsigned long const*, unsigned long*):
+        vmovdqu64       zmm1, ZMMWORD PTR [rdi+8]
+        vpaddq  zmm0, zmm1, ZMMWORD PTR [rdi]
+        vmovdqu64       ZMMWORD PTR [rsi], zmm0
+        vzeroupper
+        ret</code></pre>
+</td>
+</tr>
+</table>
+<p>On the left, the compiler has tried to be clever by unrolling the loop, so the
+8 loop bodies are just listed out explicitly. Each element of <code>next_row</code> is
+computed in turn.</p>
+<p>On the right, the compiler has managed to replace 8 additions with a single
+<code>vpaddd</code> instruction. This is a SIMD (Single instruction, multiple data)
+instruction, which is able to perform all of the additions simultaneously. It
+uses special vector registers that are 512 bits in length. Each one can hold
+8 64-bit integers.</p>
+<p>What we've seen here is known as <a href="https://llvm.org/docs/Vectorizers.html">'auto vectorization'</a>.
+It's where the compiler is able to detect certain common code patterns, and
+replace them with calls to specialised SIMD instructions. Not all code can take
+advantage of this superpower, but simple loops that have the 'embarrasingly
+parallel' property will often get some benefit.</p>
+<p>Now consider a recurrence relation similar to that used by <a href="../solutions/Pixelf.html">Pixelf</a>.
+We'll call this one <code>heffalump_trap</code>, for reasons that will become obvious:</p>
+<pre><code class="language-c++">void heffalump_trap(int n, uint64_t* next_row) {
+  for (int k = 1; k &lt; 9; ++k) {
+    next_row[k] = (next_row[k - 1] * (n - k)) / k;
+  }
+}
+</code></pre>
+<p>It's not possible to compute the <em>k+1</em>th element without first having computed
+the <em>k</em>th element. There is simply no way for the CPU to do any of the work
+simultaneously, so you end up with an unrolled loop with no magical SIMD
+instructions, even despite the pathetically hopeful use of the <code>-mavx512f</code> flag:</p>
+<pre><code class="language-c++">heffalump_trap(int, unsigned long*):
+        movabs  r8, -6148914691236517205
+        lea     ecx, [rdi-1]
+        lea     eax, [rdi-2]
+        movsx   rcx, ecx
+        imul    rcx, QWORD PTR [rsi]
+        movsx   rdx, eax
+        lea     eax, [rdi-3]
+        imul    rdx, rcx
+        mov     QWORD PTR [rsi+8], rcx
+        mov     rcx, rdx
+        movsx   rdx, eax
+        shr     rcx
+        imul    rdx, rcx
+        mov     QWORD PTR [rsi+16], rcx
+        lea     ecx, [rdi-4]
+        movsx   rcx, ecx
+        mov     rax, rdx
+        mul     r8
+        lea     eax, [rdi-5]
+        shr     rdx
+        mov     QWORD PTR [rsi+24], rdx
+        imul    rdx, rcx
+        mov     rcx, rdx
+        movsx   rdx, eax
+        shr     rcx, 2
+        imul    rdx, rcx
+        mov     QWORD PTR [rsi+32], rcx
+        movabs  rcx, -3689348814741910323
+        mov     rax, rdx
+        mul     rcx
+        lea     eax, [rdi-6]
+        mov     rcx, rdx
+        movsx   rdx, eax
+        shr     rcx, 2
+        imul    rdx, rcx
+        mov     QWORD PTR [rsi+40], rcx
+        mov     rax, rdx
+        mul     r8
+        lea     eax, [rdi-7]
+        movsx   rcx, eax
+        shr     rdx, 2
+        imul    rcx, rdx
+        mov     QWORD PTR [rsi+48], rdx
+        movabs  rdx, 2635249153387078803
+        mov     rax, rcx
+        mul     rdx
+        lea     eax, [rdi-8]
+        movsx   rdi, eax
+        sub     rcx, rdx
+        shr     rcx
+        add     rdx, rcx
+        shr     rdx, 2
+        imul    rdi, rdx
+        mov     QWORD PTR [rsi+56], rdx
+        shr     rdi, 3
+        mov     QWORD PTR [rsi+64], rdi
+        ret
+</code></pre>
+<h2><a class="header" href="#data-dependencies-block-up-the-cpu-pipeline-too" id="data-dependencies-block-up-the-cpu-pipeline-too">Data dependencies block up the CPU pipeline, too!</a></h2>
+<p>We can get a wonderfully visceral sense of the problem by using the <a href="https://llvm.org/docs/CommandGuide/llvm-mca.html">llvm-mca</a>
+static analysis tool. Essentially it looks at a piece of code and simulates how
+your CPU is likely to schedule it in the instruction pipeline. Using the
+<code>-timeline</code> flag we can see how long each instruction spends in the pipeline.</p>
+<p>Here's the key for the symbols:</p>
+<pre><code>    D : Instruction dispatched.
+    e : Instruction executing.
+    E : Instruction executed.
+    R : Instruction retired.
+    = : Instruction already dispatched, waiting to be executed.
+    - : Instruction executed, waiting to be retired.
+</code></pre>
+<p>Now here's the non-vectorised version of <code>unicorn_loop</code>:</p>
+<pre><code>Timeline view:
+
+                    0123456789          
+
+Index     0123456789          0123456789
+
+[0,0]     DeeeeeER  .    .    .    .       mov	rdx, qword ptr [rdi]
+[0,1]     DeeeeeER  .    .    .    .       mov	rax, qword ptr [rdi + 8]
+[0,2]     D=====eER .    .    .    .       add	rdx, rax
+[0,3]     D=eeeeeeER.    .    .    .       add	rax, qword ptr [rdi + 16]
+[0,4]     D=======eER    .    .    .       mov	qword ptr [rsi + 8], rax
+[0,5]     .DeeeeeE--R    .    .    .       mov	rax, qword ptr [rdi + 16]
+[0,6]     .D=eeeeeeER    .    .    .       add	rax, qword ptr [rdi + 24]
+[0,7]     .D=======eER   .    .    .       mov	qword ptr [rsi], rdx
+[0,8]     .D========eER  .    .    .       mov	qword ptr [rsi + 16], rax
+[0,9]     .D=eeeeeE---R  .    .    .       mov	rax, qword ptr [rdi + 24]
+[0,10]    . D=eeeeeeE-R  .    .    .       add	rax, qword ptr [rdi + 32]
+[0,11]    . D=eeeeeE--R  .    .    .       mov	rdx, qword ptr [rdi + 48]
+[0,12]    . D========eER .    .    .       mov	qword ptr [rsi + 24], rax
+[0,13]    . D==eeeeeE--R .    .    .       mov	rax, qword ptr [rdi + 32]
+[0,14]    .  D=eeeeeeE-R .    .    .       add	rax, qword ptr [rdi + 40]
+[0,15]    .  D========eER.    .    .       mov	qword ptr [rsi + 32], rax
+[0,16]    .  D==eeeeeE--R.    .    .       mov	rax, qword ptr [rdi + 40]
+[0,17]    .  D==eeeeeeE-R.    .    .       add	rax, qword ptr [rdi + 48]
+[0,18]    .   D========eER    .    .       mov	qword ptr [rsi + 40], rax
+[0,19]    .   D==eeeeeE--R    .    .       mov	rax, qword ptr [rdi + 56]
+[0,20]    .   D=======eE-R    .    .       add	rdx, rax
+[0,21]    .   D==eeeeeeE-R    .    .       add	rax, qword ptr [rdi + 64]
+[0,22]    .   D=========eER   .    .       mov	qword ptr [rsi + 48], rdx
+[0,23]    .    D=========eER  .    .       mov	qword ptr [rsi + 56], rax
+</code></pre>
+<p>You can see that each of the instructions takes roughly the same amount of time
+to work through the instruction pipeline. The data dependencies are very local. If
+you look down the columns, you can see by the occurrences of the letter <code>e</code> that
+many cycles have multiple instructions executing simultaneously.</p>
+<p>Now look at the output for the <code>heffalump_trap</code> function:</p>
+<pre><code class="language-Timelineview:">
+                    0123456789          0123456789          0123456789          
+Index     0123456789          0123456789          0123456789          0123456
+
+[0,0]     DeER .    .    .    .    .    .    .    .    .    .    .    .    .   movabs	r8, -6148914691236517205
+[0,1]     DeER .    .    .    .    .    .    .    .    .    .    .    .    .   lea	ecx, [rdi - 1]
+[0,2]     DeER .    .    .    .    .    .    .    .    .    .    .    .    .   lea	eax, [rdi - 2]
+[0,3]     D=eeeeeeeeER   .    .    .    .    .    .    .    .    .    .    .   imul	rcx, qword ptr [rsi]
+[0,4]     D=eE-------R   .    .    .    .    .    .    .    .    .    .    .   lea	eax, [rdi - 3]
+[0,5]     .D========eeeER.    .    .    .    .    .    .    .    .    .    .   imul	rdx, rcx
+[0,6]     .D========eE--R.    .    .    .    .    .    .    .    .    .    .   mov	qword ptr [rsi + 8], rcx
+[0,7]     .D===========eER    .    .    .    .    .    .    .    .    .    .   mov	rcx, rdx
+[0,8]     .D============eER   .    .    .    .    .    .    .    .    .    .   shr	rcx
+[0,9]     .D=============eeeER.    .    .    .    .    .    .    .    .    .   imul	rdx, rcx
+[0,10]    .D=============eE--R.    .    .    .    .    .    .    .    .    .   mov	qword ptr [rsi + 16], rcx
+[0,11]    . DeE--------------R.    .    .    .    .    .    .    .    .    .   lea	ecx, [rdi - 4]
+[0,12]    . D===============eER    .    .    .    .    .    .    .    .    .   mov	rax, rdx
+[0,13]    . D================eeeeER.    .    .    .    .    .    .    .    .   mul	r8
+[0,14]    . DeE-------------------R.    .    .    .    .    .    .    .    .   lea	eax, [rdi - 5]
+[0,15]    . D====================eER    .    .    .    .    .    .    .    .   shr	rdx
+[0,16]    .  D====================eER   .    .    .    .    .    .    .    .   mov	qword ptr [rsi + 24], rdx
+[0,17]    .  D====================eeeER .    .    .    .    .    .    .    .   imul	rdx, rcx
+[0,18]    .  D=======================eER.    .    .    .    .    .    .    .   mov	rcx, rdx
+[0,19]    .  D========================eER    .    .    .    .    .    .    .   shr	rcx, 2
+[0,20]    .  D=========================eeeER .    .    .    .    .    .    .   imul	rdx, rcx
+[0,21]    .  D=========================eE--R .    .    .    .    .    .    .   mov	qword ptr [rsi + 32], rcx
+[0,22]    .   DeE--------------------------R .    .    .    .    .    .    .   movabs	rcx, -3689348814741910323
+[0,23]    .   D===========================eER.    .    .    .    .    .    .   mov	rax, rdx
+[0,24]    .   D============================eeeeER .    .    .    .    .    .   mul	rcx
+[0,25]    .   DeE-------------------------------R .    .    .    .    .    .   lea	eax, [rdi - 6]
+[0,26]    .   D================================eER.    .    .    .    .    .   mov	rcx, rdx
+[0,27]    .    D================================eER    .    .    .    .    .   shr	rcx, 2
+[0,28]    .    D=================================eeeER .    .    .    .    .   imul	rdx, rcx
+[0,29]    .    D=================================eE--R .    .    .    .    .   mov	qword ptr [rsi + 40], rcx
+[0,30]    .    D====================================eER.    .    .    .    .   mov	rax, rdx
+[0,31]    .    D=====================================eeeeER .    .    .    .   mul	r8
+[0,32]    .    .DeE---------------------------------------R .    .    .    .   lea	eax, [rdi - 7]
+[0,33]    .    .D========================================eER.    .    .    .   shr	rdx, 2
+[0,34]    .    .D=========================================eeeER  .    .    .   imul	rcx, rdx
+[0,35]    .    .D=========================================eE--R  .    .    .   mov	qword ptr [rsi + 48], rdx
+[0,36]    .    .DeE-------------------------------------------R  .    .    .   movabs	rdx, 2635249153387078803
+[0,37]    .    .D============================================eER .    .    .   mov	rax, rcx
+[0,38]    .    . D============================================eeeeER  .    .   mul	rdx
+[0,39]    .    . DeE-----------------------------------------------R  .    .   lea	eax, [rdi - 8]
+[0,40]    .    . D================================================eER .    .   sub	rcx, rdx
+[0,41]    .    . D=================================================eER.    .   shr	rcx
+[0,42]    .    . D==================================================eER    .   add	rdx, rcx
+[0,43]    .    .  D==================================================eER   .   shr	rdx, 2
+[0,44]    .    .  D===================================================eeeER.   imul	rdi, rdx
+[0,45]    .    .  D===================================================eE--R.   mov	qword ptr [rsi + 56], rdx
+[0,46]    .    .  D======================================================eER   shr	rdi, 3
+[0,47]    .    .  D=======================================================eER  mov	qword ptr [rsi + 64], rdi
+</code></pre>
+<p>The CPU dispatches lots of instructions in the first few cycles, but because the
+inputs to those instructions depend on the results from previous instructions,
+they can't do any work until those previous instructions have been executed. The
+result is that later instructions have to sit idle in the pipeline until it's
+their turn. There are very few cycles that have more than one instruction
+actively executing at a time. Bleurgh!</p>
+<p>Given the cost of computing elements with the recurrence relation,
+<a href="../solutions/Pixelf.html">Pixelf's</a> author made a wise decision to compute only
+half of them, then copy those backwards into the other half of the row.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../threads/amdahls_law.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../threads/summary.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../threads/amdahls_law.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../threads/summary.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,173 @@
+
+- front page inc extra story para
+- pascal's triangle + first paras of "scope"
+    - many ways to skin a cat
+    - include high level overview of where the 
+    journey will go
+- benchmark caveats come last before actual results
+
+
+
+
+
+# Stuff that needs to be reinserted somewhere
+
+Here you will find all of the submissions received, along with anonymous review
+comments from other submitters. I've also provided some benchmarks, but please
+take note of the [important caveats associated with those](./benchmark_caveats.md)!
+
+The submissions were all made anonymously and given silly names so that we can
+refer to them easily.
+
+**PLEASE read the [benchmarking caveats](./benchmark_caveats.md) before diving
+in to the detail.**
+
+
+
+
+
+
+
+<p style="color:red;font-size:30px;">Following stuff needs moving</p>
+
+## Fortran4Ever
+
+Above, I showed the [Heaptrack allocation plots](#memory-allocation-analysis)
+for the [Fortran4Ever](../solutions/Fortran4Ever.md) solution, because there are
+a couple of interesting things going on. Though it makes only 20,000 allocations
+(which is good), the peak amount of memory allocated is a surprising 3.2Gb --
+twice as much as is necessary. There's also a long 'table-top' to the allocation
+graphs which point to the algorithm taking a different approach from the other
+solutions.
+
+That [Fortran4Ever](../solutions/Fortran4Ever.md) allocates twice as much memory
+than necessary is easy to explain:
+
+```c++
+std::vector<std::vector<uint64_t>> triangle_array(
+  num_rows,
+  std::vector<uint64_t>(num_rows + 1, 0) // Every row initialised to num_rows+1 size
+);
+```
+
+We'll give it a big &#128077; for allocating all of its memory up-front. But you
+can see that *every* row is sized equally. The idea is to effectively build a
+square-matrix of elements, because that makes it possible to compute new rows
+with less book-keeping. Every row is the same length, so you can treat them
+all identically &#x1F914;.
+
+That presents a problem later on though. At some point you need to trim down all
+the rows to the correct length, so that you're left with a triangle shape. Here's
+the loop that does the work:
+
+```c++
+size_t n_entries = 1;
+for (auto& row : triangle_array) {
+  row.erase(std::begin(row)); // Shuffle all elements one-to-the-left
+  row.resize(n_entries);
+  n_entries++;
+}
+```
+
+This could have been a cheap operation, except for the fact that in computing the
+values in each row, the algorithm needed to use a 'padding' element at the front of
+of each and every row. The loop above needs to remove that padding value, at the
+cost of shuffling *all* of the row elements to the left by one slot.
+
+We can get a better insight by looking at the Tracy profile:
+[![](../images/tracy_Fortran4Ever.png)](../images/tracy_Fortran4Ever.png)
+
+The algorithm has three phases:
+- `Allocate row memory` is just allocating memory for all of the rows (156.26KB
+   for every one of the 20,000 rows, totalling 3.2Gb). That takes 1.38s, which
+   is a massive amount of time, given that it's doing *nothing* but allocating
+   memory.
+- `Compute element values` is doing the work of iterating through the rows and
+  filling them with pascal's triangle values. There's no allocation happening in
+  the midst of this, which is good. Filling the whole triangle with values takes
+  315ms.
+- `Resize rows` is where every row is being shuffled one-to-the-left and then
+  trimmed to size. The excess memory isn't actually being deallocated at this
+  point, because the `std::vector` still owns the whole chunk. Shuffling and
+  trimming takes 271ms that other solutions are able to avoid entirely by making
+  different design choices.
+
+Allocating twice as much memory as required has one final sting in the tail,
+which we'll talk about when we get on to cache friendliness later.
+  
+      
+      
+      
+<!-- ## Summary statistics
+
+NOTE: Need to reduce triangle size to below 2048 rows, to avoid cache spill effects!
+      i.e. run perf on triangles with 1024 rows or fewer.
+
+A good place to start is with the Linux `perf` tool. Using the `stat` command
+gives a useful summary of CPU event counts during execution.  In each case we're
+generating a single Pascal's triangle, with an [absurd](../benchmark_caveats.md)
+20,000 rows:
+
+#### AskingCrow
+```bash
+alastair@mjolnir:~/triangle/build$ perf stat ./profile_AskingCrow -s 20000
+
+ Performance counter stats for './profile_AskingCrow -s 20000':
+
+       1297.479080      task-clock (msec)         #    0.999 CPUs utilized
+               124      context-switches          #    0.096 K/sec
+                 0      cpu-migrations            #    0.000 K/sec
+           586,495      page-faults               #    0.452 M/sec
+     4,619,689,875      cycles                    #    3.561 GHz                      (83.35%)
+       333,615,845      stalled-cycles-frontend   #    7.22% frontend cycles idle     (83.37%)
+     2,597,751,772      stalled-cycles-backend    #   56.23% backend cycles idle      (83.36%)
+     6,504,443,787      instructions              #    1.41  insn per cycle
+                                                  #    0.40  stalled cycles per insn  (83.37%)
+     1,196,447,366      branches                  #  922.132 M/sec                    (83.37%)
+         2,835,303      branch-misses             #    0.24% of all branches          (83.17%)
+
+       1.299156605 seconds time elapsed
+```
+
+#### CluelessWolverine2
+```bash
+alastair@mjolnir:~/triangle/build$ perf stat ./profile_CluelessWolverine2 -s 20000
+
+ Performance counter stats for './profile_CluelessWolverine2 -s 20000':
+
+        658.854867      task-clock (msec)         #    0.998 CPUs utilized
+                65      context-switches          #    0.099 K/sec
+                 0      cpu-migrations            #    0.000 K/sec
+           392,809      page-faults               #    0.596 M/sec
+     2,337,172,332      cycles                    #    3.547 GHz                      (83.03%)
+        10,095,276      stalled-cycles-frontend   #    0.43% frontend cycles idle     (83.01%)
+     1,608,965,174      stalled-cycles-backend    #   68.84% backend cycles idle      (83.40%)
+     2,905,933,427      instructions              #    1.24  insn per cycle
+                                                  #    0.55  stalled cycles per insn  (83.64%)
+       508,025,591      branches                  #  771.074 M/sec                    (83.62%)
+         1,247,713      branch-misses             #    0.25% of all branches          (83.29%)
+
+       0.660015574 seconds time elapsed
+```
+
+*NOTE: These results were run on a different machine to the main benchmark plots,
+because `perf` is a Linux-only tool.*
+
+It's fairly obvious that [CluelessWolverine2](../solutions/CluelessWolverine2.md)
+is making much more efficient use of resources than [AskingCrow](../solutions/AskingCrow.md).
+It uses half the number of CPU cycles, half the number of branch instructions
+and less than half the number of instructions to compute the same result.
+
+[AskingCrow](../solutions/AskingCrow.md) has many more branch-misses,
+which leads to the CPU front-end wasting around 30 times as many cycles stalled,
+waiting for work. What's happening is that when the CPU sees a branch instruction
+coming up, the branch predictor makes an educated guess about what the branch
+destination will be (based on what happened previous times that branch was hit),
+and fills the instruction pipeline with work based on that guess. If the
+guess turns out to be wrong then the pipeline has to be flushed and reloaded
+with instructions. The CPU is unable to do useful work while it waits for the new
+instructions to make their way through. [CluelessWolverine2](../solutions/CluelessWolverine2.md)
+is obviously more friendly to the branch predictor and the pipeline is stalled
+less often.
+
+-->

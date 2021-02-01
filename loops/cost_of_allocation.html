@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Cost of allocation - Pascal's Triangle C++ coding challenge</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A discussion of C++ programming techniques through the medium of Pascal's Triangle">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../pascals_triangle.html">Pascal's Triangle Coding Challenge</a></li><li class="chapter-item expanded affix "><a href="../submissions.html">Submissions</a></li><li class="chapter-item expanded "><a href="../loops/loops.html"><strong aria-hidden="true">1.</strong> Loops make the world go round (and round...)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../loops/dont_do_unnecessary_work.html"><strong aria-hidden="true">1.1.</strong> Don't do more work than you need to?</a></li><li class="chapter-item expanded "><a href="../loops/memory_allocation_matters.html"><strong aria-hidden="true">1.2.</strong> Memory allocation matters</a></li><li class="chapter-item expanded "><a href="../loops/tracing_function_calls.html"><strong aria-hidden="true">1.3.</strong> Tracing function calls</a></li><li class="chapter-item expanded "><a href="../loops/cost_of_allocation.html" class="active"><strong aria-hidden="true">1.4.</strong> Cost of allocation</a></li><li class="chapter-item expanded "><a href="../loops/be_kind_to_your_cache.html"><strong aria-hidden="true">1.5.</strong> Be kind to your cache</a></li><li class="chapter-item expanded "><a href="../loops/span.html"><strong aria-hidden="true">1.6.</strong> When everything looks like a nail</a></li><li class="chapter-item expanded "><a href="../loops/summary.html"><strong aria-hidden="true">1.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../everything_is_a_matrix.html"><strong aria-hidden="true">2.</strong> Everything is a matrix</a></li><li class="chapter-item expanded "><a href="../stl_algorithms.html"><strong aria-hidden="true">3.</strong> STL algorithms</a></li><li class="chapter-item expanded "><a href="../threads/threads_to_the_rescue.html"><strong aria-hidden="true">4.</strong> Threads to the rescue!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads/async.html"><strong aria-hidden="true">4.1.</strong> Making a stink about std::async</a></li><li class="chapter-item expanded "><a href="../threads/work_stealing.html"><strong aria-hidden="true">4.2.</strong> Work stealing</a></li><li class="chapter-item expanded "><a href="../threads/allocators.html"><strong aria-hidden="true">4.3.</strong> Allocators</a></li><li class="chapter-item expanded "><a href="../threads/amdahls_law.html"><strong aria-hidden="true">4.4.</strong> Use moar cores!</a></li><li class="chapter-item expanded "><a href="../threads/cleverness.html"><strong aria-hidden="true">4.5.</strong> Clever ain't always fast</a></li><li class="chapter-item expanded "><a href="../threads/summary.html"><strong aria-hidden="true">4.6.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../all_your_tests_are_terrible.html"><strong aria-hidden="true">5.</strong> All your tests are terrible!</a></li><li class="chapter-item expanded "><a href="../laziness.html"><strong aria-hidden="true">6.</strong> Laziness is the first step towards efficiency</a></li><li class="chapter-item expanded "><a href="../ranges.html"><strong aria-hidden="true">7.</strong> How to kill your compile times</a></li><li class="chapter-item expanded "><a href="../constexpr_cake.html"><strong aria-hidden="true">8.</strong> Have your constexpr cake and eat it</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../optimizer_magic.html"><strong aria-hidden="true">8.1.</strong> The optimizer is magic</a></li></ol></li><li class="chapter-item expanded "><a href="../property_based_testing.html"><strong aria-hidden="true">9.</strong> A surprise win for property based testing</a></li><li class="chapter-item expanded "><a href="../code_alignment_issues.html"><strong aria-hidden="true">10.</strong> A free 50% speed boost. Randomly.</a></li><li class="chapter-item expanded "><a href="../conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded "><a href="../appendices/problem_statement.html"><strong aria-hidden="true">12.</strong> Appendix I - Original problem statement</a></li><li class="chapter-item expanded "><a href="../appendices/test_setup.html"><strong aria-hidden="true">13.</strong> Appendix II - Benchmark hardware and setup</a></li><li class="chapter-item expanded "><a href="../submissions_appendix.html"><strong aria-hidden="true">14.</strong> Appendix III - Submissions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../solutions/Baseline.html"><strong aria-hidden="true">14.1.</strong> Baseline</a></li><li class="chapter-item expanded "><a href="../solutions/AskingCrow.html"><strong aria-hidden="true">14.2.</strong> AskingCrow</a></li><li class="chapter-item expanded "><a href="../solutions/BumbleBeetle.html"><strong aria-hidden="true">14.3.</strong> BumbleBeetle</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine.html"><strong aria-hidden="true">14.4.</strong> CluelessWolverine</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine2.html"><strong aria-hidden="true">14.5.</strong> CluelessWolverine2</a></li><li class="chapter-item expanded "><a href="../solutions/Fortran4Ever.html"><strong aria-hidden="true">14.6.</strong> Fortran4Ever</a></li><li class="chapter-item expanded "><a href="../solutions/simple_basic_solution.html"><strong aria-hidden="true">14.7.</strong> simple_basic_solution</a></li><li class="chapter-item expanded "><a href="../solutions/user_usery.html"><strong aria-hidden="true">14.8.</strong> user_usery</a></li><li class="chapter-item expanded "><a href="../solutions/FlyingDesitter_arh.html"><strong aria-hidden="true">14.9.</strong> FlyingDesitter_arh</a></li><li class="chapter-item expanded "><a href="../solutions/pascalsTriangle.for.html"><strong aria-hidden="true">14.10.</strong> pascalsTriangle.for</a></li><li class="chapter-item expanded "><a href="../solutions/GroovyZone.html"><strong aria-hidden="true">14.11.</strong> GroovyZone</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader.html"><strong aria-hidden="true">14.12.</strong> LordVader</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader2_arh.html"><strong aria-hidden="true">14.13.</strong> LordVader2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf.html"><strong aria-hidden="true">14.14.</strong> Pixelf</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_arh.html"><strong aria-hidden="true">14.15.</strong> Pixelf_TBB_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html"><strong aria-hidden="true">14.16.</strong> Pixelf_TBB_scalable_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_boost_arh.html"><strong aria-hidden="true">14.17.</strong> Pixelf_TBB_boost_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_monotonic_alloc_arh.html"><strong aria-hidden="true">14.18.</strong> Pixelf_TBB_monotonic_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_single_array_arh.html"><strong aria-hidden="true">14.19.</strong> Pixelf_TBB_single_array_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_spans_arh.html"><strong aria-hidden="true">14.20.</strong> Pixelf_TBB_spans_arh</a></li><li class="chapter-item expanded "><a href="../solutions/DigitalGerbil.html"><strong aria-hidden="true">14.21.</strong> DigitalGerbil</a></li><li class="chapter-item expanded "><a href="../solutions/TerrificPhantom.html"><strong aria-hidden="true">14.22.</strong> TerrificPhantom</a></li><li class="chapter-item expanded "><a href="../solutions/Porpoison.html"><strong aria-hidden="true">14.23.</strong> Porpoison</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana.html"><strong aria-hidden="true">14.24.</strong> ArchBanana</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana2_arh.html"><strong aria-hidden="true">14.25.</strong> ArchBanana2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/EvilDoughnut.html"><strong aria-hidden="true">14.26.</strong> EvilDoughnut</a></li><li class="chapter-item expanded "><a href="../solutions/FrostyMongoose.html"><strong aria-hidden="true">14.27.</strong> FrostyMongoose</a></li><li class="chapter-item expanded "><a href="../solutions/Proteus.html"><strong aria-hidden="true">14.28.</strong> Proteus</a></li><li class="chapter-item expanded "><a href="../solutions/Erwin.html"><strong aria-hidden="true">14.29.</strong> Erwin</a></li><li class="chapter-item expanded "><a href="../solutions/FireFly.html"><strong aria-hidden="true">14.30.</strong> FireFly</a></li><li class="chapter-item expanded "><a href="../solutions/LightningHippo_arh.html"><strong aria-hidden="true">14.31.</strong> LightningHippo_arh</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pascal's Triangle C++ coding challenge</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#visualising-the-cost-of-memory-allocation-with-the-tracy-frame-profiler" id="visualising-the-cost-of-memory-allocation-with-the-tracy-frame-profiler">Visualising the cost of memory allocation with the Tracy Frame Profiler</a></h1>
+<p>We've seen that <a href="../solutions/AskingCrow.html">AskingCrow</a> is doing a lot more
+allocation than <a href="../solutions/CluelessWolverine2.html">CluelessWolverine2</a>, but
+what does it actually cost?</p>
+<p><code>uftrace</code> was trivial to use and logged every function call. But it caused
+a substantial slowdown of the program, and didn't allow the profiling to be
+<em>targeted</em> where it was most needed. That's where the
+<a href="https://github.com/wolfpld/tracy">Tracy</a> frame profiler comes in.</p>
+<p>Tracy works quite differently from how a sampling-based profiler (think Linux
+<code>perf</code>, Intel's
+<a href="https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html">VTune</a>
+or Apple's <a href="https://help.apple.com/instruments/mac/8.0/#/dev7b09c84f5">Instruments</a>)
+would work. They usually only gather coarse statistics that tell you the
+percentage of total time spent in each function.</p>
+<p>Instead Tracy allows us to mark up <em>exactly</em> the code we want to profile (using
+simple macros), and captures logs every time that section of code is executed.
+As before, the act of profiling will affect the timings, but Tracy
+is remarkably low overhead and offers nanosecond resolution results. Oh, and the
+visualisations it offers are downright snazzy.</p>
+<p>We're going to benchmark just the time taken for the insertion of rows into the
+outer vector, for a triangle with 20,000 rows.</p>
+<h4><a class="header" href="#askingcrow" id="askingcrow">AskingCrow</a></h4>
+<p><a href="../solutions/AskingCrow.html">AskingCrow</a> constructs the outer vector without
+reserving space and pushes new rows into it. When new rows are pushed, the outer
+vector may need to be resized. Furthermore, each row is <em>copied</em> in to the outer
+vector, which will <em>always</em> incur an allocation and a copy of all of the row
+elements:</p>
+<pre><code class="language-c++">std::vector&lt;std::vector&lt;uint64_t&gt;&gt; rows;
+...
+while (rows.size() &lt; num_rows)
+  std::vector&lt;uint64_t&gt; new_row;
+  ...
+  rows.push_back(new_row);  // &lt;-- Mean 32.97us per call, for a total
+                            //     of ~660ms over 20,000 calls.
+                            // Note that 'new_row' is always copied here, which
+                            // incurs another allocation.
+}
+</code></pre>
+<h4><a class="header" href="#cluelesswolverine2" id="cluelesswolverine2">CluelessWolverine2</a></h4>
+<p><a href="../solutions/CluelessWolverine2.html">CluelessWolverine2</a> reserves space in the
+outer vector and then <em>moves</em> the newly computed rows into it:</p>
+<pre><code class="language-c++">std::vector&lt;std::vector&lt;uint64_t&gt;&gt; triangle;
+triangle.reserve(num_rows);  // &lt;-- 9.18us, once
+
+for (uint32_t i = 0; i &lt; num_rows; i++) {
+  ...
+  triangle.push_back(std::move(row)); // &lt;-- Mean 47ns per call, for a total
+                                      //     of ~950us over 20,000 calls.
+}
+</code></pre>
+<p>Over the course of constructing the whole triangle, <a href="../solutions/AskingCrow.html">AskingCrow</a>
+is spending 660ms pushing rows into the outer vector, but
+<a href="../solutions/CluelessWolverine2.html">CluelessWolverine2</a> is spending only 950us
+doing the same thing. That's around <strong>700 times faster</strong>. Since running
+<a href="../solutions/AskingCrow.html">AskingCrow</a> under the Tracy profiler takes a
+<em>total</em> of 1010ms, that 660ms for row allocations represents a massive portion
+of the total run-time.</p>
+<h1><a class="header" href="#the-geometric-allocation-behaviour-of-stdvector" id="the-geometric-allocation-behaviour-of-stdvector">The geometric allocation behaviour of <code>std::vector</code></a></h1>
+<p>One of the reasons that <code>AskingCrow</code> is doing a lot of memory allocation is due
+to the way that <code>std::vector</code> works. If you don't pre-reserve space in a
+<code>std::vector</code> then it has no option but to just grow on demand. The precise
+details are implementation defined, but most implementations use a scheme where
+they multiply the capacity of the vector by a fixed factor whenever it needs to
+grow. That's the most efficient thing you can do if you have no prior
+knowledge about how many elements are going to be pushed in.</p>
+<p>We can use Tracy to visualise the geometric nature of the allocations as
+<a href="../solutions/AskingCrow.html">AskingCrow</a> populates a triangle rows containing
+20,000 elements. I think it's super cool to see.</p>
+<p>I've annotated the solution's source code to label the various stages of the
+algorithm with names like <code>Fill new row</code> and <code>Push back new row</code>. You'll see
+those labels in the Tracy viewer. The labelled bars at the top represent the
+amount of time spent in each zone. Selecting a zone (as I have done for <code>Fill new row</code>) shows zone-specific allocation information in the bottom half of the
+screen.</p>
+<p>There's a huge amount of information contained in this screenshot, so I've
+highlighted the key parts.</p>
+<h3><a class="header" href="#stdvector-growth-in-askingcrow" id="stdvector-growth-in-askingcrow">std::vector growth in AskingCrow</a></h3>
+<p><a href="../images/tracy_AskingCrow_vector_alloc.png"><img src="../images/tracy_AskingCrow_vector_alloc.png" alt="" /></a></p>
+<ol>
+<li>
+<p>First thing to notice is that there are 16 allocations and 15 deallocations
+happening <em>while</em> the 20,000 row elements are computed. Those are due to the
+row vector automatically growing itself occasionally, and could all be avoided
+by correctly sizing the vector up-front.</p>
+</li>
+<li>
+<p>The table in the bottom half of the screen shows how the amount of memory
+allocated by the <code>std::vector</code> doubles at every stage - starting with 8 bytes
+(enough to hold a single <code>uint64_t</code> value) and ending with 256 Kilobytes
+(enough to hold 32,768 <code>uint64_t</code> values).</p>
+</li>
+<li>
+<p>The yellow memory usage graph neatly shows the geometric nature of the
+allocations.  You'll notice that it has a saw-tooth pattern to it. That's
+because whenever the vector grows, the newly allocated buffer has to coexist
+with the old buffer until all of the values have been copied over.
+Only then can the old buffer be deallocated.</p>
+<p>These memory allocations are relatively quick, because they are for very
+common sizes -- the allocator can likely pull them straight out of a pool of
+correctly sized chunks. In fact, inspecting the addresses of the allocated
+memory in Tracy shows that in most cases the temporary row vectors are
+allocated <em>exactly the same</em> chunks of memory every time. It's reusing them
+over and over. That means they're already in the cache, so writing to that
+memory will be super fast. If the allocator didn't do that, the performance
+would be grindingly slow.</p>
+</li>
+<li>
+<p>The last thing to notice is the relative size of the bars for the <code>Fill new row</code> zone and the <code>Push back new row</code> zone. Their length denotes the time they
+took. Just pushing back the <code>new_row</code> into the outer <code>rows</code> vector takes longer
+to do than filling the row with values!</p>
+<p>The likely reason is that the memory allocator will need to find a <em>new</em>
+chunk of memory for the destination vector, rather than reusing a previously
+used chunk. Because it's a new piece of memory, there's no chance it will be
+in the cache already. Copying all the row values into it will <em>always</em> incur
+an expensive trip out to main memory.</p>
+</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../loops/tracing_function_calls.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../loops/be_kind_to_your_cache.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../loops/tracing_function_calls.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../loops/be_kind_to_your_cache.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

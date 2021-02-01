@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Work stealing - Pascal's Triangle C++ coding challenge</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A discussion of C++ programming techniques through the medium of Pascal's Triangle">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../pascals_triangle.html">Pascal's Triangle Coding Challenge</a></li><li class="chapter-item expanded affix "><a href="../submissions.html">Submissions</a></li><li class="chapter-item expanded "><a href="../loops/loops.html"><strong aria-hidden="true">1.</strong> Loops make the world go round (and round...)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../loops/dont_do_unnecessary_work.html"><strong aria-hidden="true">1.1.</strong> Don't do more work than you need to?</a></li><li class="chapter-item expanded "><a href="../loops/memory_allocation_matters.html"><strong aria-hidden="true">1.2.</strong> Memory allocation matters</a></li><li class="chapter-item expanded "><a href="../loops/tracing_function_calls.html"><strong aria-hidden="true">1.3.</strong> Tracing function calls</a></li><li class="chapter-item expanded "><a href="../loops/cost_of_allocation.html"><strong aria-hidden="true">1.4.</strong> Cost of allocation</a></li><li class="chapter-item expanded "><a href="../loops/be_kind_to_your_cache.html"><strong aria-hidden="true">1.5.</strong> Be kind to your cache</a></li><li class="chapter-item expanded "><a href="../loops/span.html"><strong aria-hidden="true">1.6.</strong> When everything looks like a nail</a></li><li class="chapter-item expanded "><a href="../loops/summary.html"><strong aria-hidden="true">1.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../everything_is_a_matrix.html"><strong aria-hidden="true">2.</strong> Everything is a matrix</a></li><li class="chapter-item expanded "><a href="../stl_algorithms.html"><strong aria-hidden="true">3.</strong> STL algorithms</a></li><li class="chapter-item expanded "><a href="../threads/threads_to_the_rescue.html"><strong aria-hidden="true">4.</strong> Threads to the rescue!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads/async.html"><strong aria-hidden="true">4.1.</strong> Making a stink about std::async</a></li><li class="chapter-item expanded "><a href="../threads/work_stealing.html" class="active"><strong aria-hidden="true">4.2.</strong> Work stealing</a></li><li class="chapter-item expanded "><a href="../threads/allocators.html"><strong aria-hidden="true">4.3.</strong> Allocators</a></li><li class="chapter-item expanded "><a href="../threads/amdahls_law.html"><strong aria-hidden="true">4.4.</strong> Use moar cores!</a></li><li class="chapter-item expanded "><a href="../threads/cleverness.html"><strong aria-hidden="true">4.5.</strong> Clever ain't always fast</a></li><li class="chapter-item expanded "><a href="../threads/summary.html"><strong aria-hidden="true">4.6.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../all_your_tests_are_terrible.html"><strong aria-hidden="true">5.</strong> All your tests are terrible!</a></li><li class="chapter-item expanded "><a href="../laziness.html"><strong aria-hidden="true">6.</strong> Laziness is the first step towards efficiency</a></li><li class="chapter-item expanded "><a href="../ranges.html"><strong aria-hidden="true">7.</strong> How to kill your compile times</a></li><li class="chapter-item expanded "><a href="../constexpr_cake.html"><strong aria-hidden="true">8.</strong> Have your constexpr cake and eat it</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../optimizer_magic.html"><strong aria-hidden="true">8.1.</strong> The optimizer is magic</a></li></ol></li><li class="chapter-item expanded "><a href="../property_based_testing.html"><strong aria-hidden="true">9.</strong> A surprise win for property based testing</a></li><li class="chapter-item expanded "><a href="../code_alignment_issues.html"><strong aria-hidden="true">10.</strong> A free 50% speed boost. Randomly.</a></li><li class="chapter-item expanded "><a href="../conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded "><a href="../appendices/problem_statement.html"><strong aria-hidden="true">12.</strong> Appendix I - Original problem statement</a></li><li class="chapter-item expanded "><a href="../appendices/test_setup.html"><strong aria-hidden="true">13.</strong> Appendix II - Benchmark hardware and setup</a></li><li class="chapter-item expanded "><a href="../submissions_appendix.html"><strong aria-hidden="true">14.</strong> Appendix III - Submissions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../solutions/Baseline.html"><strong aria-hidden="true">14.1.</strong> Baseline</a></li><li class="chapter-item expanded "><a href="../solutions/AskingCrow.html"><strong aria-hidden="true">14.2.</strong> AskingCrow</a></li><li class="chapter-item expanded "><a href="../solutions/BumbleBeetle.html"><strong aria-hidden="true">14.3.</strong> BumbleBeetle</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine.html"><strong aria-hidden="true">14.4.</strong> CluelessWolverine</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine2.html"><strong aria-hidden="true">14.5.</strong> CluelessWolverine2</a></li><li class="chapter-item expanded "><a href="../solutions/Fortran4Ever.html"><strong aria-hidden="true">14.6.</strong> Fortran4Ever</a></li><li class="chapter-item expanded "><a href="../solutions/simple_basic_solution.html"><strong aria-hidden="true">14.7.</strong> simple_basic_solution</a></li><li class="chapter-item expanded "><a href="../solutions/user_usery.html"><strong aria-hidden="true">14.8.</strong> user_usery</a></li><li class="chapter-item expanded "><a href="../solutions/FlyingDesitter_arh.html"><strong aria-hidden="true">14.9.</strong> FlyingDesitter_arh</a></li><li class="chapter-item expanded "><a href="../solutions/pascalsTriangle.for.html"><strong aria-hidden="true">14.10.</strong> pascalsTriangle.for</a></li><li class="chapter-item expanded "><a href="../solutions/GroovyZone.html"><strong aria-hidden="true">14.11.</strong> GroovyZone</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader.html"><strong aria-hidden="true">14.12.</strong> LordVader</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader2_arh.html"><strong aria-hidden="true">14.13.</strong> LordVader2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf.html"><strong aria-hidden="true">14.14.</strong> Pixelf</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_arh.html"><strong aria-hidden="true">14.15.</strong> Pixelf_TBB_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html"><strong aria-hidden="true">14.16.</strong> Pixelf_TBB_scalable_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_boost_arh.html"><strong aria-hidden="true">14.17.</strong> Pixelf_TBB_boost_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_monotonic_alloc_arh.html"><strong aria-hidden="true">14.18.</strong> Pixelf_TBB_monotonic_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_single_array_arh.html"><strong aria-hidden="true">14.19.</strong> Pixelf_TBB_single_array_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_spans_arh.html"><strong aria-hidden="true">14.20.</strong> Pixelf_TBB_spans_arh</a></li><li class="chapter-item expanded "><a href="../solutions/DigitalGerbil.html"><strong aria-hidden="true">14.21.</strong> DigitalGerbil</a></li><li class="chapter-item expanded "><a href="../solutions/TerrificPhantom.html"><strong aria-hidden="true">14.22.</strong> TerrificPhantom</a></li><li class="chapter-item expanded "><a href="../solutions/Porpoison.html"><strong aria-hidden="true">14.23.</strong> Porpoison</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana.html"><strong aria-hidden="true">14.24.</strong> ArchBanana</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana2_arh.html"><strong aria-hidden="true">14.25.</strong> ArchBanana2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/EvilDoughnut.html"><strong aria-hidden="true">14.26.</strong> EvilDoughnut</a></li><li class="chapter-item expanded "><a href="../solutions/FrostyMongoose.html"><strong aria-hidden="true">14.27.</strong> FrostyMongoose</a></li><li class="chapter-item expanded "><a href="../solutions/Proteus.html"><strong aria-hidden="true">14.28.</strong> Proteus</a></li><li class="chapter-item expanded "><a href="../solutions/Erwin.html"><strong aria-hidden="true">14.29.</strong> Erwin</a></li><li class="chapter-item expanded "><a href="../solutions/FireFly.html"><strong aria-hidden="true">14.30.</strong> FireFly</a></li><li class="chapter-item expanded "><a href="../solutions/LightningHippo_arh.html"><strong aria-hidden="true">14.31.</strong> LightningHippo_arh</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pascal's Triangle C++ coding challenge</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#when-stealing-is-a-virtue" id="when-stealing-is-a-virtue">When stealing is a virtue</a></h1>
+<p style="color:red;font-size:30px;">Section not complete</p>
+<h2><a class="header" href="#can-we-do-better" id="can-we-do-better">Can we do better?</a></h2>
+<p>It should be clear by now that <code>std::async</code> is not the correct tool for this
+job. It's much better suited to one-off long-running concurrent tasks, rather
+than executing a series of repeated tasks. One reviewer suggested</p>
+<blockquote>
+<p>&quot;Could use a work-stealing setup with an atomic int for threads to grab the
+next available row, and signal when there's no more work.&quot;</p>
+</blockquote>
+<p>That's a very insightful comment, but it does gloss over a fearsome amount of detail.</p>
+<p>A 'work-stealing queue' is a scheduling technique where a pool of worker
+threads each have their own job queue, with a scheduler to distribute work
+between the queues. Typically the queues are implemented as
+lock-free data structures, to avoid the performance horrors associated with
+waiting on mutexes. If a worker thread runs out of tasks on its own queue, it's
+allowed to poll the queues of other workers and 'steal' work from them. That
+ensures you don't have threads sitting around idle while others are still
+working.</p>
+<p>Writing a good lock-free queue implementation is extremely difficult. Debugging
+it is even harder. Fortunately there are some high quality implementations of
+these concepts freely available from trusted vendors. None of them were within
+the rules of this coding challenge, but I want to give a glimpse of what's
+possible with a good concurrency library. In particular, let's experiment a little
+with Intel's <a href="https://github.com/oneapi-src/oneTBB">Threading Building Blocks (TBB)</a>.</p>
+<p>Before we go on, I want to reiterate the point that trying to optimise the
+Pascal's Triangle algorithm is a <!-- [Bad Idea](../benchmark_caveats.md) --> Bad Idea. Using threads
+to optimise it is a Really Bad Idea. For any reasonable row count (i.e. smaller
+than 64 rows which is the size where integer overflow happens), the cost of
+launching a thread is <em>always</em> going to be greater than just getting on and 
+computing the values on the current thread. We're <em>only</em> doing this because it's
+fun and instructive to see the effects of different design decisions.</p>
+<h3><a class="header" href="#using-tbbparallel_for-to-make-the-cpu-work-harder-pixelf_tbb_arh" id="using-tbbparallel_for-to-make-the-cpu-work-harder-pixelf_tbb_arh">Using <code>tbb::parallel_for</code> to make the CPU work harder (Pixelf_TBB_arh)</a></h3>
+<p><a href="https://github.com/oneapi-src/oneTBB">TBB</a> supports a
+number of different threading models. One of the highest-level abstractions it
+offers is the <code>parallel_for</code> command. You pass it a function object and an input
+range and it will do the hard work of dividing the work up into batches and
+dispatching it to a thread pool via work-stealing queues.</p>
+<p><a href="../solutions/Pixelf.html">Pixelf's</a> <code>FillRowsInParallel</code> function becomes <code>FillRowBlock</code>:</p>
+<pre><code class="language-c++"><!--
+-->void FillRowBlock(vector&lt;vector&lt;uint64_t&gt;&gt;& rows,
+                  const <b>tbb::blocked_range&lt;uint32_t&gt;</b>& r) {
+  for (auto i = r.begin(); i < r.end(); ++i) {
+    FillRowN(rows[i], i + 1);
+  }
+}
+</code></pre>
+<p>The <code>blocked_range</code> type gets passed in by TBB with a list of row indices.
+<code>FillRowBlock</code> simply iterates through them all and generates the values.</p>
+<p>In the outer <code>generate_rows</code> function, we launch the tasks with a call to
+<code>parallel_for</code>:</p>
+<pre><code class="language-c++">tbb::parallel_for(tbb::blocked_range&lt;uint32_t&gt;(0, num_rows),
+                  [&amp;rows](auto&amp; r) { FillRowBlock(rows, r); });
+</code></pre>
+<p>The first argument here specifies a range containing <em>all</em> of the rows that need
+filling, and the lambda function needs to accept subsets of that range.</p>
+<p>That's literally it. TBB handles setting up of the task scheduler and thread pool
+automatically.</p>
+<p>You can find the full source on the <a href="../solutions/Pixelf_TBB_arh.html">Pixelf_TBB_arh</a> page.</p>
+<h3><a class="header" href="#how-does-it-do" id="how-does-it-do">How does it do?</a></h3>
+<h4><a class="header" href="#time-to-generate-a-triangle" id="time-to-generate-a-triangle">Time to generate a triangle</a></h4>
+<p><a href="../images/generated/threads_TBB_generate_cpu_bench.svg"><img src="../images/generated/threads_TBB_generate_cpu_bench.svg" alt="" /></a></p>
+<h4><a class="header" href="#element-throughput" id="element-throughput">Element throughput</a></h4>
+<p><a href="../images/generated/threads_TBB_generate_throughput_log_scale_bench.svg"><img src="../images/generated/threads_TBB_generate_throughput_log_scale_bench.svg" alt="" /></a>
+<a href="../images/generated/threads_TBB_generate_throughput_linear_scale_bench.svg"><img src="../images/generated/threads_TBB_generate_throughput_linear_scale_bench.svg" alt="" /></a></p>
+<p>OK, so performance isn't stellar against the single-threaded baseline solution,
+but at least we've beaten the pants off <a href="../solutions/Pixelf.html">Pixelf</a>.</p>
+<p>What about CPU usage? Let's fire up the frame profiler again:</p>
+<p><a href="../images/pixelftbb_simple_zones.png"><img src="../images/pixelftbb_simple_zones.png" alt="" /></a></p>
+<p>Now we're talking! There are exactly 16 threads: one for each logical core<sup class="footnote-reference"><a href="#1">1</a></sup>.
+Each of which is fully occupied with jobs. <em>Even the main thread which launched
+the tasks is executing jobs!</em></p>
+<p>That's the power of a good threading library.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>During benchmarking I disabled hyper-threading, so only the 8 physical
+cores were available. But when I took the Tracy screenshot, hyper-threading
+was enabled, so 16 logical cores were available.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../threads/async.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../threads/allocators.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../threads/async.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../threads/allocators.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

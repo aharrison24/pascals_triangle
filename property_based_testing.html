@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>A surprise win for property based testing - Pascal's Triangle C++ coding challenge</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A discussion of C++ programming techniques through the medium of Pascal's Triangle">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="pascals_triangle.html">Pascal's Triangle Coding Challenge</a></li><li class="chapter-item expanded affix "><a href="submissions.html">Submissions</a></li><li class="chapter-item expanded "><a href="loops/loops.html"><strong aria-hidden="true">1.</strong> Loops make the world go round (and round...)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="loops/dont_do_unnecessary_work.html"><strong aria-hidden="true">1.1.</strong> Don't do more work than you need to?</a></li><li class="chapter-item expanded "><a href="loops/memory_allocation_matters.html"><strong aria-hidden="true">1.2.</strong> Memory allocation matters</a></li><li class="chapter-item expanded "><a href="loops/tracing_function_calls.html"><strong aria-hidden="true">1.3.</strong> Tracing function calls</a></li><li class="chapter-item expanded "><a href="loops/cost_of_allocation.html"><strong aria-hidden="true">1.4.</strong> Cost of allocation</a></li><li class="chapter-item expanded "><a href="loops/be_kind_to_your_cache.html"><strong aria-hidden="true">1.5.</strong> Be kind to your cache</a></li><li class="chapter-item expanded "><a href="loops/span.html"><strong aria-hidden="true">1.6.</strong> When everything looks like a nail</a></li><li class="chapter-item expanded "><a href="loops/summary.html"><strong aria-hidden="true">1.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="everything_is_a_matrix.html"><strong aria-hidden="true">2.</strong> Everything is a matrix</a></li><li class="chapter-item expanded "><a href="stl_algorithms.html"><strong aria-hidden="true">3.</strong> STL algorithms</a></li><li class="chapter-item expanded "><a href="threads/threads_to_the_rescue.html"><strong aria-hidden="true">4.</strong> Threads to the rescue!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="threads/async.html"><strong aria-hidden="true">4.1.</strong> Making a stink about std::async</a></li><li class="chapter-item expanded "><a href="threads/work_stealing.html"><strong aria-hidden="true">4.2.</strong> Work stealing</a></li><li class="chapter-item expanded "><a href="threads/allocators.html"><strong aria-hidden="true">4.3.</strong> Allocators</a></li><li class="chapter-item expanded "><a href="threads/amdahls_law.html"><strong aria-hidden="true">4.4.</strong> Use moar cores!</a></li><li class="chapter-item expanded "><a href="threads/cleverness.html"><strong aria-hidden="true">4.5.</strong> Clever ain't always fast</a></li><li class="chapter-item expanded "><a href="threads/summary.html"><strong aria-hidden="true">4.6.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="all_your_tests_are_terrible.html"><strong aria-hidden="true">5.</strong> All your tests are terrible!</a></li><li class="chapter-item expanded "><a href="laziness.html"><strong aria-hidden="true">6.</strong> Laziness is the first step towards efficiency</a></li><li class="chapter-item expanded "><a href="ranges.html"><strong aria-hidden="true">7.</strong> How to kill your compile times</a></li><li class="chapter-item expanded "><a href="constexpr_cake.html"><strong aria-hidden="true">8.</strong> Have your constexpr cake and eat it</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="optimizer_magic.html"><strong aria-hidden="true">8.1.</strong> The optimizer is magic</a></li></ol></li><li class="chapter-item expanded "><a href="property_based_testing.html" class="active"><strong aria-hidden="true">9.</strong> A surprise win for property based testing</a></li><li class="chapter-item expanded "><a href="code_alignment_issues.html"><strong aria-hidden="true">10.</strong> A free 50% speed boost. Randomly.</a></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded "><a href="appendices/problem_statement.html"><strong aria-hidden="true">12.</strong> Appendix I - Original problem statement</a></li><li class="chapter-item expanded "><a href="appendices/test_setup.html"><strong aria-hidden="true">13.</strong> Appendix II - Benchmark hardware and setup</a></li><li class="chapter-item expanded "><a href="submissions_appendix.html"><strong aria-hidden="true">14.</strong> Appendix III - Submissions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="solutions/Baseline.html"><strong aria-hidden="true">14.1.</strong> Baseline</a></li><li class="chapter-item expanded "><a href="solutions/AskingCrow.html"><strong aria-hidden="true">14.2.</strong> AskingCrow</a></li><li class="chapter-item expanded "><a href="solutions/BumbleBeetle.html"><strong aria-hidden="true">14.3.</strong> BumbleBeetle</a></li><li class="chapter-item expanded "><a href="solutions/CluelessWolverine.html"><strong aria-hidden="true">14.4.</strong> CluelessWolverine</a></li><li class="chapter-item expanded "><a href="solutions/CluelessWolverine2.html"><strong aria-hidden="true">14.5.</strong> CluelessWolverine2</a></li><li class="chapter-item expanded "><a href="solutions/Fortran4Ever.html"><strong aria-hidden="true">14.6.</strong> Fortran4Ever</a></li><li class="chapter-item expanded "><a href="solutions/simple_basic_solution.html"><strong aria-hidden="true">14.7.</strong> simple_basic_solution</a></li><li class="chapter-item expanded "><a href="solutions/user_usery.html"><strong aria-hidden="true">14.8.</strong> user_usery</a></li><li class="chapter-item expanded "><a href="solutions/FlyingDesitter_arh.html"><strong aria-hidden="true">14.9.</strong> FlyingDesitter_arh</a></li><li class="chapter-item expanded "><a href="solutions/pascalsTriangle.for.html"><strong aria-hidden="true">14.10.</strong> pascalsTriangle.for</a></li><li class="chapter-item expanded "><a href="solutions/GroovyZone.html"><strong aria-hidden="true">14.11.</strong> GroovyZone</a></li><li class="chapter-item expanded "><a href="solutions/LordVader.html"><strong aria-hidden="true">14.12.</strong> LordVader</a></li><li class="chapter-item expanded "><a href="solutions/LordVader2_arh.html"><strong aria-hidden="true">14.13.</strong> LordVader2_arh</a></li><li class="chapter-item expanded "><a href="solutions/Pixelf.html"><strong aria-hidden="true">14.14.</strong> Pixelf</a></li><li class="chapter-item expanded "><a href="solutions/Pixelf_TBB_arh.html"><strong aria-hidden="true">14.15.</strong> Pixelf_TBB_arh</a></li><li class="chapter-item expanded "><a href="solutions/Pixelf_TBB_scalable_alloc_arh.html"><strong aria-hidden="true">14.16.</strong> Pixelf_TBB_scalable_alloc_arh</a></li><li class="chapter-item expanded "><a href="solutions/Pixelf_TBB_boost_arh.html"><strong aria-hidden="true">14.17.</strong> Pixelf_TBB_boost_arh</a></li><li class="chapter-item expanded "><a href="solutions/Pixelf_TBB_monotonic_alloc_arh.html"><strong aria-hidden="true">14.18.</strong> Pixelf_TBB_monotonic_alloc_arh</a></li><li class="chapter-item expanded "><a href="solutions/Pixelf_TBB_single_array_arh.html"><strong aria-hidden="true">14.19.</strong> Pixelf_TBB_single_array_arh</a></li><li class="chapter-item expanded "><a href="solutions/Pixelf_TBB_spans_arh.html"><strong aria-hidden="true">14.20.</strong> Pixelf_TBB_spans_arh</a></li><li class="chapter-item expanded "><a href="solutions/DigitalGerbil.html"><strong aria-hidden="true">14.21.</strong> DigitalGerbil</a></li><li class="chapter-item expanded "><a href="solutions/TerrificPhantom.html"><strong aria-hidden="true">14.22.</strong> TerrificPhantom</a></li><li class="chapter-item expanded "><a href="solutions/Porpoison.html"><strong aria-hidden="true">14.23.</strong> Porpoison</a></li><li class="chapter-item expanded "><a href="solutions/ArchBanana.html"><strong aria-hidden="true">14.24.</strong> ArchBanana</a></li><li class="chapter-item expanded "><a href="solutions/ArchBanana2_arh.html"><strong aria-hidden="true">14.25.</strong> ArchBanana2_arh</a></li><li class="chapter-item expanded "><a href="solutions/EvilDoughnut.html"><strong aria-hidden="true">14.26.</strong> EvilDoughnut</a></li><li class="chapter-item expanded "><a href="solutions/FrostyMongoose.html"><strong aria-hidden="true">14.27.</strong> FrostyMongoose</a></li><li class="chapter-item expanded "><a href="solutions/Proteus.html"><strong aria-hidden="true">14.28.</strong> Proteus</a></li><li class="chapter-item expanded "><a href="solutions/Erwin.html"><strong aria-hidden="true">14.29.</strong> Erwin</a></li><li class="chapter-item expanded "><a href="solutions/FireFly.html"><strong aria-hidden="true">14.30.</strong> FireFly</a></li><li class="chapter-item expanded "><a href="solutions/LightningHippo_arh.html"><strong aria-hidden="true">14.31.</strong> LightningHippo_arh</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pascal's Triangle C++ coding challenge</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#a-surprise-win-for-property-based-testing" id="a-surprise-win-for-property-based-testing">A surprise win for property based testing</a></h1>
+<p style="color:red;font-size:30px;">Section not complete</p>
+<h2><a class="header" href="#can-we-write-better-tests" id="can-we-write-better-tests">Can we write better tests?</a></h2>
+<p>Writing good tests for Pascal's Triangle seems pretty tricky at first sight. If
+we want to avoid hard-coding results then don't we effectively need to
+reimplement the algorithm that we're trying to test?</p>
+<p>I decided to investigate how property-based testing could help out. And in the
+process I discovered a bona-fide bug in one of the submissions.</p>
+<h3><a class="header" href="#how-can-property-based-testing-help-us-to-do-better" id="how-can-property-based-testing-help-us-to-do-better">How can property-based testing help us to do better?</a></h3>
+<p>Fortunately, Pascal's Triangle has many beautiful mathematical properties that
+might be able to help us. Here are just a few (assuming a zero-based row index):</p>
+<ul>
+<li>Row n of the triangle should contain n+1 elements</li>
+<li>Every row is symmetrical</li>
+<li>The gradient of the values in each row is strictly decreasing</li>
+<li>The sum of all the elements in row n is 2^n</li>
+<li>The second and penultimate elements of row n (for n&gt;1) are equal to n</li>
+</ul>
+<p>Properties such as these are easy to code and can be used to check the validity
+of a triangle of <em>any</em> size. The properties I've listed do not guarantee the
+correctness of pascal's triangle, but they do act as a check that can quickly
+detect certain errors.</p>
+<p>In addition to the existing hard-coded tests, what we'd really like to do is
+have the test suite generate triangles of random sizes and then check that they
+satisfy a series of simple properties.</p>
+<p>It's normally deeply frowned-upon to use random data in unit tests. The
+principal issue is the lack of repeatability, which leads to the deadly sin
+of flaky tests. These are tests that fail only <em>some of the time</em>, which makes
+them a nightmare to debug. Unit tests are supposed to run quickly, so it's also
+important to put reasonable bounds on the number of random tests that you run.</p>
+<p>That's where property-based testing frameworks come in. They give us a rigorous
+framework for supplying random inputs to test cases, and strive to make failing
+test cases be repeatable.</p>
+<h3><a class="header" href="#how-can-we-do-property-based-testing-in-practice" id="how-can-we-do-property-based-testing-in-practice">How can we do property based testing in practice?</a></h3>
+<p>Functional programming languages like Haskell have been doing property based
+testing for a long time, with the <a href="https://hackage.haskell.org/package/QuickCheck">QuickCheck</a>
+library being the most well known.</p>
+<p>Functional programming ideas are gradually making their way into more
+mainstream languages and Python's <a href="https://hypothesis.readthedocs.io/en/latest/quickstart.html">Hypothesis</a> library is generally regarded as the best-in-class framework for property based
+testing in any language.</p>
+<p>When you run your test suite, the Hypothesis library will generate a number of
+random inputs for each of your test cases (~100 normally). In the case of
+pascal's triangle the random input might control the number of rows in the
+triangle. For more complex examples the random inputs could be multi-byte strings or whole
+classes.</p>
+<p>When a test fails, Hypothesis will try to shrink the inputs down to the smallest
+possible case that still triggers the error. It will then cache the failing
+input in a local database and make sure that all future invocations of the test
+suite get given the problematic input. Effectively it acts as an automatically
+generated regression test. I wish I had space to say more about this,
+because it is a transformative capability.</p>
+<p>The C++ community has traditionally been more resistant to the arrival of
+functional paradigms, but there have been some recent attempts to bring the
+ideas of property-based testing to the language. One example is the
+<a href="https://github.com/emil-e/rapidcheck">RapidCheck</a> framework, that came out of
+Spotify.</p>
+<p>I decided to try using Rapidcheck to write some tests for Pascal's Triangle. </p>
+<h2><a class="header" href="#generating-random-triangles" id="generating-random-triangles">Generating random triangles</a></h2>
+<p>I began with a helper function to generate random triangles:</p>
+<pre><code class="language-c++">auto generate_random_triangle() {
+  // Generate a random number between 1 and 64
+  auto const num_rows = *rc::gen::inRange(1U, max_rows);
+  
+  // Use it to build a pascal's triangle
+  return std::pair(num_rows, SOLUTION_NAMESPACE::generate_rows(num_rows));
+};
+</code></pre>
+<p>Rapidcheck offers a series of <a href="https://github.com/emil-e/rapidcheck/blob/master/doc/generators.md">generator functions</a> for producing random data of various types (including vectors and
+strings). <code>generate_random_triangle</code> uses <code>rc::gen::inRange</code> to generate
+uniformly distributed integers.</p>
+<h2><a class="header" href="#writing-the-property-based-tests" id="writing-the-property-based-tests">Writing the property-based tests</a></h2>
+<p>I chose to implement the first three properties:</p>
+<ul>
+<li>Row n of the triangle should contain n+1 elements</li>
+<li>Every row is symmetrical</li>
+<li>The gradient of the values in each row is strictly decreasing</li>
+</ul>
+<p>For simplicity, rather than checking the gradients along every row (which would
+require subtraction of unsigned values; a recipe for extreme sadness), I opted
+instead to make sure that the first half of every row was sorted in ascending
+order. It's a weaker property, but easier to write an obviously-correct
+implementation.</p>
+<p>Each property test is implemented as a lambda function wrapped in a call to
+the <code>rc::prop</code> function. Since each test needs to be called multiple times by
+Rapidcheck, we can't use the usual Doctest <code>REQUIRE</code> assertion macro. Instead we
+use the <code>RC_ASSERT</code> macro provided by Rapidcheck that only prints output once
+test-case shrinking has occurred.</p>
+<pre><code class="language-c++">TEST_CASE(&quot;Property based tests&quot;) {
+
+  rc::prop(&quot;The nth row has n+1 elements&quot;, [] {
+    // GIVEN: A triangle of size num_rows
+    auto const [num_rows, triangle] = generate_random_triangle();
+
+    // WHEN: We take the length of every row
+    auto const row_lengths = triangle | rv::transform(ranges::size);
+
+    // THEN: Then the row lengths form the sequence [1..num_rows]
+    auto const expected_row_lengths =
+        rv::closed_iota(1UL, std::size_t(num_rows));
+
+    RC_ASSERT(ranges::to_vector(row_lengths) ==
+              ranges::to_vector(expected_row_lengths));
+  });
+
+  rc::prop(&quot;Every row is symmetrical&quot;, [] {
+    // GIVEN: A triangle of size num_rows
+    auto const [num_rows, triangle] = generate_random_triangle();
+
+    // WHEN: Every row is reversed
+    auto const triangle_with_reversed_rows =
+        triangle | rv::transform(rv::reverse);
+
+    // THEN: The triangle remains unchanged
+    RC_ASSERT(to_vec_of_vec(triangle_with_reversed_rows) == triangle);
+  });
+
+  rc::prop(
+      &quot;First half of every row has values sorted in strictly ascending order&quot;,
+      [] {
+        // GIVEN: A triangle of size num_rows
+        auto const [num_rows, triangle] = generate_random_triangle();
+
+        // THEN: for every row...
+        for (uint32_t i = 0; i &lt; num_rows; ++i) {
+          auto const&amp; row = triangle[i];
+          auto first_half = row | rv::take((row.size() + 1) / 2);
+
+          // ... the first half of the row is sorted in ascending order
+          if (!pt::is_strictly_ascending(first_half)) {
+            std::string const not_strictly_sorted_msg = fmt::format(
+                &quot;Row index: {}. First half of row is not sorted in strictly &quot;
+                &quot;ascending order:\n{}&quot;,
+                i, print_vec(ranges::to_vector(first_half)));
+            RC_FAIL(not_strictly_sorted_msg);
+          }
+        }
+      });
+}
+</code></pre>
+<h2><a class="header" href="#heres-what-happened-next" id="heres-what-happened-next">Here's what happened next...</a></h2>
+<p>Having written these three simple property tests I ran them on all of the
+solutions, expecting everything to pass. And straight away it went <strong>Kaboom</strong>:</p>
+<pre><code class="language-markdown">[doctest] doctest version is &quot;2.3.7&quot;
+[doctest] run with &quot;--help&quot; for options
+Using configuration: seed=4206418198193332509
+===============================================================================
+tests/ArchBanana_property_tests.cpp:62:
+TEST SUITE: ArchBanana
+TEST CASE:  Property based tests
+  First half of every row has values sorted in strictly ascending order
+
+/Users/arh/code/personal/pascals_triangle/src/external/rapidcheck_doctest/include/rapidcheck/rapidcheck_for_doctest.h:39: FATAL ERROR: Falsifiable after 60 tests and 1 shrink
+
+unsigned int:
+36
+
+tests/ArchBanana_property_tests.cpp:108:
+RC_FAIL(not_strictly_sorted_msg)
+
+Row index: 35. First half of row is not sorted in strictly ascending order:
+{1, 35, 595, 6545, 52360, 324632, 1623160, 6724520, 23535820, 70607460, 183579396, 417225900, 834451800, 1476337800, 18446744071734543720, 18446744072662527480, 18446744073474513270, 242600354}
+
+
+===============================================================================
+[doctest] test cases:    279 |    278 passed |      1 failed |      0 skipped
+[doctest] assertions:    249 |    248 passed |      1 failed |
+[doctest] Status: FAILURE!
+</code></pre>
+<h3><a class="header" href="#nice-things-that-rapidcheck-does-for-us" id="nice-things-that-rapidcheck-does-for-us">Nice things that RapidCheck does for us</a></h3>
+<p>First thing to note is the line that says:</p>
+<pre><code class="language-markdown">Using configuration: seed=4206418198193332509
+</code></pre>
+<p>By setting the <code>RC_PARAMS</code> environment variable to <code>seed=4206418198193332509</code>,
+and re-running the test suite we can exactly reproduce the failing test run.
+That's one massive advantage of using a good property-based testing framework.</p>
+<p>The second thing to note is the line that says <code>FATAL ERROR: Falsifiable after 60 tests and 1 shrink</code>. Once RapidCheck had found a failing case, it then went
+about finding the smallest number of rows in the triangle that would reproduce
+the failure. For pascal's triangle, that's not so important, but it's enormously
+helpful in more complex situations. But at least we know that row 36 was the
+first row that exhibited the problem.</p>
+<h3><a class="header" href="#so-what-happened" id="so-what-happened">So what happened?</a></h3>
+<p>Taking a look at the test output, we can see that the failure occurred on the
+36th row of a triangle generated by the <a href="./solutions/ArchBanana.html">ArchBanana</a>
+solution. The values increase as expected, and then suddenly blow up. This looks
+very much like an integer overflow problem.</p>
+<p>I tracked it down to the implementation of this function, which sums the
+values in a range (where a 'range' is some iterable object).</p>
+<pre><code class="language-c++">static auto sum = [](auto&amp;&amp; range) { return ranges::accumulate(range, 0); };
+</code></pre>
+<p>Can you see the bug?</p>
+<p>No? How about if I show you what the line should have read<sup class="footnote-reference"><a href="#1">1</a></sup>:</p>
+<pre><code class="language-c++">static auto sum = [](auto&amp;&amp; range) { return ranges::accumulate(range, uint64_t(0)); };
+</code></pre>
+<p>Without the cast, the compiler is selecting a 32-bit signed integer as the
+accumulation variable. It's overflowing when trying to sum all the values on the
+36th row of pascal's triangle, and flipping to a negative number. That's
+'undefined behaviour' and subject to the usual nasal demons. Later on, the
+negative 32-bit integer returned by the <code>sum</code> function is implicitly converted
+into an unsigned 64-bit integer, which results in a Very Big Number™ appearing in
+our triangle row.</p>
+<h3><a class="header" href="#thats-a-win-in-my-book" id="thats-a-win-in-my-book">That's a win in my book</a></h3>
+<p>The author of <a href="./solutions/ArchBanana.html">ArchBanana</a> didn't spot this problem.
+None of the <strong>five</strong> people who reviewed the submission spotted the problem.
+Unit-testing of a few carefully chosen cases didn't spot the problem. But
+property-based testing found it in 100ms. That's food for thought.</p>
+<h3><a class="header" href="#and-thats-not-all" id="and-thats-not-all">And that's not all</a></h3>
+<p>Later on, when I was refactoring the <a href="./solutions/LightningHippo_arh.html">LightningHippo_arh</a>
+solution, the property-based tests picked up an off-by-one error that only
+manifested for triangles of a particular size. Writing explicit unit tests to
+catch that wouldn't have been feasible.</p>
+<h2><a class="header" href="#tldr" id="tldr">TL;DR</a></h2>
+<ul>
+<li>If your test suite allows for implementations that don't generalise well then
+consider what more general properties you can be testing for.</li>
+<li>A good property-based testing framework can change the way you think about
+tests.</li>
+<li>Property-based tests often surprise you.</li>
+</ul>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Yes, to be truly generic we should use <code>ranges::range_value_t&lt;decltype(range)&gt;(0)</code>,
+but that doesn't really sell the &quot;ranges lead to readable declarative code&quot; message
+that we Koolaid drinkers would have you all believe.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="optimizer_magic.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="code_alignment_issues.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="optimizer_magic.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="code_alignment_issues.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

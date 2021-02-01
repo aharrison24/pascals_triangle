@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>When everything looks like a nail - Pascal's Triangle C++ coding challenge</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A discussion of C++ programming techniques through the medium of Pascal's Triangle">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../pascals_triangle.html">Pascal's Triangle Coding Challenge</a></li><li class="chapter-item expanded affix "><a href="../submissions.html">Submissions</a></li><li class="chapter-item expanded "><a href="../loops/loops.html"><strong aria-hidden="true">1.</strong> Loops make the world go round (and round...)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../loops/dont_do_unnecessary_work.html"><strong aria-hidden="true">1.1.</strong> Don't do more work than you need to?</a></li><li class="chapter-item expanded "><a href="../loops/memory_allocation_matters.html"><strong aria-hidden="true">1.2.</strong> Memory allocation matters</a></li><li class="chapter-item expanded "><a href="../loops/tracing_function_calls.html"><strong aria-hidden="true">1.3.</strong> Tracing function calls</a></li><li class="chapter-item expanded "><a href="../loops/cost_of_allocation.html"><strong aria-hidden="true">1.4.</strong> Cost of allocation</a></li><li class="chapter-item expanded "><a href="../loops/be_kind_to_your_cache.html"><strong aria-hidden="true">1.5.</strong> Be kind to your cache</a></li><li class="chapter-item expanded "><a href="../loops/span.html" class="active"><strong aria-hidden="true">1.6.</strong> When everything looks like a nail</a></li><li class="chapter-item expanded "><a href="../loops/summary.html"><strong aria-hidden="true">1.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../everything_is_a_matrix.html"><strong aria-hidden="true">2.</strong> Everything is a matrix</a></li><li class="chapter-item expanded "><a href="../stl_algorithms.html"><strong aria-hidden="true">3.</strong> STL algorithms</a></li><li class="chapter-item expanded "><a href="../threads/threads_to_the_rescue.html"><strong aria-hidden="true">4.</strong> Threads to the rescue!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads/async.html"><strong aria-hidden="true">4.1.</strong> Making a stink about std::async</a></li><li class="chapter-item expanded "><a href="../threads/work_stealing.html"><strong aria-hidden="true">4.2.</strong> Work stealing</a></li><li class="chapter-item expanded "><a href="../threads/allocators.html"><strong aria-hidden="true">4.3.</strong> Allocators</a></li><li class="chapter-item expanded "><a href="../threads/amdahls_law.html"><strong aria-hidden="true">4.4.</strong> Use moar cores!</a></li><li class="chapter-item expanded "><a href="../threads/cleverness.html"><strong aria-hidden="true">4.5.</strong> Clever ain't always fast</a></li><li class="chapter-item expanded "><a href="../threads/summary.html"><strong aria-hidden="true">4.6.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../all_your_tests_are_terrible.html"><strong aria-hidden="true">5.</strong> All your tests are terrible!</a></li><li class="chapter-item expanded "><a href="../laziness.html"><strong aria-hidden="true">6.</strong> Laziness is the first step towards efficiency</a></li><li class="chapter-item expanded "><a href="../ranges.html"><strong aria-hidden="true">7.</strong> How to kill your compile times</a></li><li class="chapter-item expanded "><a href="../constexpr_cake.html"><strong aria-hidden="true">8.</strong> Have your constexpr cake and eat it</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../optimizer_magic.html"><strong aria-hidden="true">8.1.</strong> The optimizer is magic</a></li></ol></li><li class="chapter-item expanded "><a href="../property_based_testing.html"><strong aria-hidden="true">9.</strong> A surprise win for property based testing</a></li><li class="chapter-item expanded "><a href="../code_alignment_issues.html"><strong aria-hidden="true">10.</strong> A free 50% speed boost. Randomly.</a></li><li class="chapter-item expanded "><a href="../conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded "><a href="../appendices/problem_statement.html"><strong aria-hidden="true">12.</strong> Appendix I - Original problem statement</a></li><li class="chapter-item expanded "><a href="../appendices/test_setup.html"><strong aria-hidden="true">13.</strong> Appendix II - Benchmark hardware and setup</a></li><li class="chapter-item expanded "><a href="../submissions_appendix.html"><strong aria-hidden="true">14.</strong> Appendix III - Submissions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../solutions/Baseline.html"><strong aria-hidden="true">14.1.</strong> Baseline</a></li><li class="chapter-item expanded "><a href="../solutions/AskingCrow.html"><strong aria-hidden="true">14.2.</strong> AskingCrow</a></li><li class="chapter-item expanded "><a href="../solutions/BumbleBeetle.html"><strong aria-hidden="true">14.3.</strong> BumbleBeetle</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine.html"><strong aria-hidden="true">14.4.</strong> CluelessWolverine</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine2.html"><strong aria-hidden="true">14.5.</strong> CluelessWolverine2</a></li><li class="chapter-item expanded "><a href="../solutions/Fortran4Ever.html"><strong aria-hidden="true">14.6.</strong> Fortran4Ever</a></li><li class="chapter-item expanded "><a href="../solutions/simple_basic_solution.html"><strong aria-hidden="true">14.7.</strong> simple_basic_solution</a></li><li class="chapter-item expanded "><a href="../solutions/user_usery.html"><strong aria-hidden="true">14.8.</strong> user_usery</a></li><li class="chapter-item expanded "><a href="../solutions/FlyingDesitter_arh.html"><strong aria-hidden="true">14.9.</strong> FlyingDesitter_arh</a></li><li class="chapter-item expanded "><a href="../solutions/pascalsTriangle.for.html"><strong aria-hidden="true">14.10.</strong> pascalsTriangle.for</a></li><li class="chapter-item expanded "><a href="../solutions/GroovyZone.html"><strong aria-hidden="true">14.11.</strong> GroovyZone</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader.html"><strong aria-hidden="true">14.12.</strong> LordVader</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader2_arh.html"><strong aria-hidden="true">14.13.</strong> LordVader2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf.html"><strong aria-hidden="true">14.14.</strong> Pixelf</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_arh.html"><strong aria-hidden="true">14.15.</strong> Pixelf_TBB_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html"><strong aria-hidden="true">14.16.</strong> Pixelf_TBB_scalable_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_boost_arh.html"><strong aria-hidden="true">14.17.</strong> Pixelf_TBB_boost_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_monotonic_alloc_arh.html"><strong aria-hidden="true">14.18.</strong> Pixelf_TBB_monotonic_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_single_array_arh.html"><strong aria-hidden="true">14.19.</strong> Pixelf_TBB_single_array_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_spans_arh.html"><strong aria-hidden="true">14.20.</strong> Pixelf_TBB_spans_arh</a></li><li class="chapter-item expanded "><a href="../solutions/DigitalGerbil.html"><strong aria-hidden="true">14.21.</strong> DigitalGerbil</a></li><li class="chapter-item expanded "><a href="../solutions/TerrificPhantom.html"><strong aria-hidden="true">14.22.</strong> TerrificPhantom</a></li><li class="chapter-item expanded "><a href="../solutions/Porpoison.html"><strong aria-hidden="true">14.23.</strong> Porpoison</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana.html"><strong aria-hidden="true">14.24.</strong> ArchBanana</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana2_arh.html"><strong aria-hidden="true">14.25.</strong> ArchBanana2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/EvilDoughnut.html"><strong aria-hidden="true">14.26.</strong> EvilDoughnut</a></li><li class="chapter-item expanded "><a href="../solutions/FrostyMongoose.html"><strong aria-hidden="true">14.27.</strong> FrostyMongoose</a></li><li class="chapter-item expanded "><a href="../solutions/Proteus.html"><strong aria-hidden="true">14.28.</strong> Proteus</a></li><li class="chapter-item expanded "><a href="../solutions/Erwin.html"><strong aria-hidden="true">14.29.</strong> Erwin</a></li><li class="chapter-item expanded "><a href="../solutions/FireFly.html"><strong aria-hidden="true">14.30.</strong> FireFly</a></li><li class="chapter-item expanded "><a href="../solutions/LightningHippo_arh.html"><strong aria-hidden="true">14.31.</strong> LightningHippo_arh</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pascal's Triangle C++ coding challenge</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#when-everything-looks-like-a-nail-perhaps-you-need-a-spanner" id="when-everything-looks-like-a-nail-perhaps-you-need-a-spanner">When everything looks like a nail, perhaps you need a spanner</a></h1>
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<p>
+<img src="../images/span_layout.jpg" alt="Memory layout as a contiguous array" width="85%" class="center">
+</p><br/>
+<p>All of the loop-based solutions we've seen so far are constrained by the fact
+that they have to return their result as a <code>std::vector&lt;std::vector&lt;uint64_t&gt;</code>.
+Each of the rows of the triangle lives in its own <code>std::vector</code>, which has two
+important implications:</p>
+<ol>
+<li>We need to perform a memory allocation for <em>every</em> row.</li>
+<li>We have no control over where in memory those allocations are made.</li>
+</ol>
+<p>In this section we'll explore <em>one</em> approach for fixing both of those problems.
+There are also viable solutions using custom allocators for STL
+containers. I did implement some of those, but I didn't feel I could do justice
+to them in this write-up, so we'll stick to talking about 'view' types.</p>
+<h2><a class="header" href="#c20s-stdspan" id="c20s-stdspan">C++20's <code>std::span</code></a></h2>
+<p>C++20 introduces <a href="https://en.cppreference.com/w/cpp/container/span"><code>std::span</code></a>,
+which allows us to create lightweight 'views' onto underlying data. Whereas
+<code>std::string_view</code> offers immutable views onto 'char-like' data, <code>std::span</code>
+can point at contiguous arrays of <em>any</em> type. In addition, the underlying data
+can optionally be mutated through the view.</p>
+<p>Essentially <code>std::span</code> is just a class template which contains a pair of pointers to the
+beginning and end of a contiguous chunk of data <em>that it does not own</em>. The reason
+<code>std::span</code> is interesting is that it has methods like <code>begin</code>, <code>end</code>, <code>size</code>
+and <code>operator[]</code>, which allow <code>std::span</code> to be used as if it were any other STL
+container. The only difference is that you cannot insert or delete elements.
+But you can mutate them.</p>
+<p>We don't have access to <code>std::span</code> in C++17, but the
+<a href="https://ericniebler.github.io/range-v3/">Range-v3</a> library contains
+<code>ranges::span</code> which does a very similar job, so we'll use that instead.</p>
+<h2><a class="header" href="#changing-the-return-type-of-generate_rows" id="changing-the-return-type-of-generate_rows">Changing the return type of <code>generate_rows</code></a></h2>
+<p>A key insight is that the original challenge did not <em>require</em> <code>generate_rows</code> to return
+a nested <code>std::vector&lt;std::vector&lt;uint64_t&gt;&gt;</code> data structure. It only required
+it to return a type which behaves similarly. <code>ranges::span&lt;uint64_t&gt;</code> has all
+the necessary methods for iterating over values, so we can change the return
+type of the <code>generate_rows</code> function to be <code>std::vector&lt;ranges::span&lt;uint64_t&gt;&gt;</code>
+and the unit tests will still compile. </p>
+<p>This frees us from the requirement to allocate a separate array of <code>uint64_t</code>
+elements for every row of pascal's triangle. Instead we can allocate a <em>single</em>
+array of <code>rows * (rows+1) / 2</code> elements up front, which can accommodate the
+whole triangle. Then we just create a lightweight <code>span</code> object for every row,
+which points in to the appropriate part of the large array.</p>
+<p>There's the added benefit of cache-friendliness here. When the CPU accesses
+bytes from RAM, it reads them in chunks that are the same width as a cache-line.
+On current architectures that would typically be 64-bytes at a time. There's also
+a hardware 'cache prefetcher' that speculatively retrieves chunks of memory before
+you need them. That works best when you access memory sequentially.</p>
+<p>When our triangle row data was stored in individual <code>std::vector</code> instances,
+there would be an almost-guaranteed cache-miss when the the algorithm hit the
+beginning of each new row. With an up-front allocation of a single contiguous
+block of memory, the prefetcher will <em>always</em> have grabbed the memory we need
+when we roll on to the next row. That's neat.</p>
+<h2><a class="header" href="#ownership-obstacles" id="ownership-obstacles">Ownership obstacles</a></h2>
+<p>The problem with <code>span</code> objects is that they do not own the data they point to.
+If you point a <code>span</code> at some piece of memory and then the owner of that memory
+goes out of scope then you'll be left with a 'dangling' <code>span</code>. That's nothing
+new -- C++ has had the problem of dangling pointers and references right from
+the earliest days. But it is something we need to be very careful of when using
+'view' objects such as <code>std::span</code> and <code>std::string_view</code>.</p>
+<p>We need to somehow bundle the <em>ownership</em> of the triangle data in to the result
+type returned by the <code>generate_rows</code> function, but still retain its compatibility
+with the unit tests. Here's how we can do that:</p>
+<pre><code class="language-c++">class PascalsTriangle {
+  std::unique_ptr&lt;uint64_t[]&gt; values_;        // Underlying data
+  std::vector&lt;ranges::span&lt;uint64_t&gt;&gt; rows_;  // Vector of lightweight row views
+
+ public:
+  PascalsTriangle(uint32_t num_rows);         // Constructor fills rows_ with data
+
+  // Providing begin() and end() allows the PascalsTriangle type
+  // to be iterated over.
+  auto begin() const { return rows_.cbegin(); }
+  auto end() const { return rows_.cend(); }
+};
+
+inline auto generate_rows(uint32_t num_rows) -&gt; PascalsTriangle {
+  return PascalsTriangle(num_rows);
+}
+</code></pre>
+<p>The <code>PascalsTriangle</code> class owns the underlying triangle data in the form of the
+<code>values_</code> array. This could be implemented as a <code>std::vector</code>, but I chose to use a
+<code>unique_ptr</code> because it avoids the up-front cost of value-initialisation that
+<code>std::vector</code> imposes. <a href="https://accu.org/index.php/journals/2776">But that's a story</a>
+for <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1072r1.html">another day</a>.</p>
+<p>The sneaky part is that <code>PascalsTriangle</code> has <code>begin()</code> and <code>end()</code> methods that
+return iterators into the <code>rows_</code> vector. That makes the <code>PascalsTriangle</code> type
+look sufficiently 'container-like' that it will satisfy the interface requirements
+of the unit tests. You can even use range-for loops on it:</p>
+<pre><code class="language-c++">PascalsTriangle const triangle = generate_rows(42);
+
+for (auto const&amp; row: triangle) {
+  ...
+}
+</code></pre>
+<h2><a class="header" href="#look-its-more-fasterer" id="look-its-more-fasterer">Look! It's more fasterer!</a></h2>
+<p>Once the return-type is designed, the rest of the implementation is very
+similar to all of the other raw-loop solutions. You can see it at
+<a href="../solutions/FlyingDesitter_arh.html">FlyingDesitter_arh</a>. I'd like to thank
+<a href="https://cpponsea.uk/2020/sessions/reducing-memory-allocations-in-a-large-cpp-application.html">Arnaud Desitter</a> for reminding me to benchmark this.</p>
+<p>Now, no matter the size of the triangle, we only ever make <em>two</em> allocations in
+total. It makes a big difference.</p>
+<p>Recall that in the <a href="./dont_do_unnecessary_work.html">Don't do more work than you need to?</a>
+section we cooked up a solution called <a href="../solutions/Baseline.html">Baseline</a>
+which was what I consider to be the 'canonical' raw-loop approach to generating
+Pascal's Triangle. For 64-row triangles, <a href="../solutions/FlyingDesitter_arh.html">FlyingDesitter_arh</a> is
+<strong>10 times faster</strong> than <a href="../solutions/Baseline.html">Baseline</a>. Tasty.</p>
+<h4><a class="header" href="#element-throughput-log-scale" id="element-throughput-log-scale">Element throughput (log scale)</a></h4>
+<p><a href="../images/generated/FlyingDesitter_arh_generate_throughput_log_scale_bench.svg"><img src="../images/generated/FlyingDesitter_arh_generate_throughput_log_scale_bench.svg" alt="" /></a></p>
+<h4><a class="header" href="#element-throughput-linear-scale" id="element-throughput-linear-scale">Element throughput (linear scale)</a></h4>
+<p><a href="../images/generated/FlyingDesitter_arh_generate_throughput_linear_scale_bench.svg"><img src="../images/generated/FlyingDesitter_arh_generate_throughput_linear_scale_bench.svg" alt="" /></a></p>
+<p>OK, so we're done here? We can all go home?</p>
+<p>Not really. This solution may be super-fast, but it has some pretty anti-social
+storage requirements. The amount of memory it uses is <strong>quadratic</strong> in the
+number of rows. And it still suffers from a catastrophic tumble when the
+triangle spills out of L3 cache. I think we'll grade this one
+'B+ (could do better)'.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../loops/be_kind_to_your_cache.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../loops/summary.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../loops/be_kind_to_your_cache.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../loops/summary.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

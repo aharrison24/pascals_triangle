@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Use moar cores! - Pascal's Triangle C++ coding challenge</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A discussion of C++ programming techniques through the medium of Pascal's Triangle">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../pascals_triangle.html">Pascal's Triangle Coding Challenge</a></li><li class="chapter-item expanded affix "><a href="../submissions.html">Submissions</a></li><li class="chapter-item expanded "><a href="../loops/loops.html"><strong aria-hidden="true">1.</strong> Loops make the world go round (and round...)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../loops/dont_do_unnecessary_work.html"><strong aria-hidden="true">1.1.</strong> Don't do more work than you need to?</a></li><li class="chapter-item expanded "><a href="../loops/memory_allocation_matters.html"><strong aria-hidden="true">1.2.</strong> Memory allocation matters</a></li><li class="chapter-item expanded "><a href="../loops/tracing_function_calls.html"><strong aria-hidden="true">1.3.</strong> Tracing function calls</a></li><li class="chapter-item expanded "><a href="../loops/cost_of_allocation.html"><strong aria-hidden="true">1.4.</strong> Cost of allocation</a></li><li class="chapter-item expanded "><a href="../loops/be_kind_to_your_cache.html"><strong aria-hidden="true">1.5.</strong> Be kind to your cache</a></li><li class="chapter-item expanded "><a href="../loops/span.html"><strong aria-hidden="true">1.6.</strong> When everything looks like a nail</a></li><li class="chapter-item expanded "><a href="../loops/summary.html"><strong aria-hidden="true">1.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../everything_is_a_matrix.html"><strong aria-hidden="true">2.</strong> Everything is a matrix</a></li><li class="chapter-item expanded "><a href="../stl_algorithms.html"><strong aria-hidden="true">3.</strong> STL algorithms</a></li><li class="chapter-item expanded "><a href="../threads/threads_to_the_rescue.html"><strong aria-hidden="true">4.</strong> Threads to the rescue!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads/async.html"><strong aria-hidden="true">4.1.</strong> Making a stink about std::async</a></li><li class="chapter-item expanded "><a href="../threads/work_stealing.html"><strong aria-hidden="true">4.2.</strong> Work stealing</a></li><li class="chapter-item expanded "><a href="../threads/allocators.html"><strong aria-hidden="true">4.3.</strong> Allocators</a></li><li class="chapter-item expanded "><a href="../threads/amdahls_law.html" class="active"><strong aria-hidden="true">4.4.</strong> Use moar cores!</a></li><li class="chapter-item expanded "><a href="../threads/cleverness.html"><strong aria-hidden="true">4.5.</strong> Clever ain't always fast</a></li><li class="chapter-item expanded "><a href="../threads/summary.html"><strong aria-hidden="true">4.6.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../all_your_tests_are_terrible.html"><strong aria-hidden="true">5.</strong> All your tests are terrible!</a></li><li class="chapter-item expanded "><a href="../laziness.html"><strong aria-hidden="true">6.</strong> Laziness is the first step towards efficiency</a></li><li class="chapter-item expanded "><a href="../ranges.html"><strong aria-hidden="true">7.</strong> How to kill your compile times</a></li><li class="chapter-item expanded "><a href="../constexpr_cake.html"><strong aria-hidden="true">8.</strong> Have your constexpr cake and eat it</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../optimizer_magic.html"><strong aria-hidden="true">8.1.</strong> The optimizer is magic</a></li></ol></li><li class="chapter-item expanded "><a href="../property_based_testing.html"><strong aria-hidden="true">9.</strong> A surprise win for property based testing</a></li><li class="chapter-item expanded "><a href="../code_alignment_issues.html"><strong aria-hidden="true">10.</strong> A free 50% speed boost. Randomly.</a></li><li class="chapter-item expanded "><a href="../conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded "><a href="../appendices/problem_statement.html"><strong aria-hidden="true">12.</strong> Appendix I - Original problem statement</a></li><li class="chapter-item expanded "><a href="../appendices/test_setup.html"><strong aria-hidden="true">13.</strong> Appendix II - Benchmark hardware and setup</a></li><li class="chapter-item expanded "><a href="../submissions_appendix.html"><strong aria-hidden="true">14.</strong> Appendix III - Submissions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../solutions/Baseline.html"><strong aria-hidden="true">14.1.</strong> Baseline</a></li><li class="chapter-item expanded "><a href="../solutions/AskingCrow.html"><strong aria-hidden="true">14.2.</strong> AskingCrow</a></li><li class="chapter-item expanded "><a href="../solutions/BumbleBeetle.html"><strong aria-hidden="true">14.3.</strong> BumbleBeetle</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine.html"><strong aria-hidden="true">14.4.</strong> CluelessWolverine</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine2.html"><strong aria-hidden="true">14.5.</strong> CluelessWolverine2</a></li><li class="chapter-item expanded "><a href="../solutions/Fortran4Ever.html"><strong aria-hidden="true">14.6.</strong> Fortran4Ever</a></li><li class="chapter-item expanded "><a href="../solutions/simple_basic_solution.html"><strong aria-hidden="true">14.7.</strong> simple_basic_solution</a></li><li class="chapter-item expanded "><a href="../solutions/user_usery.html"><strong aria-hidden="true">14.8.</strong> user_usery</a></li><li class="chapter-item expanded "><a href="../solutions/FlyingDesitter_arh.html"><strong aria-hidden="true">14.9.</strong> FlyingDesitter_arh</a></li><li class="chapter-item expanded "><a href="../solutions/pascalsTriangle.for.html"><strong aria-hidden="true">14.10.</strong> pascalsTriangle.for</a></li><li class="chapter-item expanded "><a href="../solutions/GroovyZone.html"><strong aria-hidden="true">14.11.</strong> GroovyZone</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader.html"><strong aria-hidden="true">14.12.</strong> LordVader</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader2_arh.html"><strong aria-hidden="true">14.13.</strong> LordVader2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf.html"><strong aria-hidden="true">14.14.</strong> Pixelf</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_arh.html"><strong aria-hidden="true">14.15.</strong> Pixelf_TBB_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html"><strong aria-hidden="true">14.16.</strong> Pixelf_TBB_scalable_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_boost_arh.html"><strong aria-hidden="true">14.17.</strong> Pixelf_TBB_boost_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_monotonic_alloc_arh.html"><strong aria-hidden="true">14.18.</strong> Pixelf_TBB_monotonic_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_single_array_arh.html"><strong aria-hidden="true">14.19.</strong> Pixelf_TBB_single_array_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_spans_arh.html"><strong aria-hidden="true">14.20.</strong> Pixelf_TBB_spans_arh</a></li><li class="chapter-item expanded "><a href="../solutions/DigitalGerbil.html"><strong aria-hidden="true">14.21.</strong> DigitalGerbil</a></li><li class="chapter-item expanded "><a href="../solutions/TerrificPhantom.html"><strong aria-hidden="true">14.22.</strong> TerrificPhantom</a></li><li class="chapter-item expanded "><a href="../solutions/Porpoison.html"><strong aria-hidden="true">14.23.</strong> Porpoison</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana.html"><strong aria-hidden="true">14.24.</strong> ArchBanana</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana2_arh.html"><strong aria-hidden="true">14.25.</strong> ArchBanana2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/EvilDoughnut.html"><strong aria-hidden="true">14.26.</strong> EvilDoughnut</a></li><li class="chapter-item expanded "><a href="../solutions/FrostyMongoose.html"><strong aria-hidden="true">14.27.</strong> FrostyMongoose</a></li><li class="chapter-item expanded "><a href="../solutions/Proteus.html"><strong aria-hidden="true">14.28.</strong> Proteus</a></li><li class="chapter-item expanded "><a href="../solutions/Erwin.html"><strong aria-hidden="true">14.29.</strong> Erwin</a></li><li class="chapter-item expanded "><a href="../solutions/FireFly.html"><strong aria-hidden="true">14.30.</strong> FireFly</a></li><li class="chapter-item expanded "><a href="../solutions/LightningHippo_arh.html"><strong aria-hidden="true">14.31.</strong> LightningHippo_arh</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pascal's Triangle C++ coding challenge</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<h1><a class="header" href="#use-moar-cores" id="use-moar-cores">Use Moar Cores!</a></h1>
+<p style="color:red;font-size:30px;">Section not complete</p>
+<p>I know what you're thinking. You're thinking:
+&quot;8 cores is puny! Find a bigger computer!&quot;</p>
+<p>Oh? You weren't thinking that? Well I was. Each to their own.</p>
+<p>So anyway, I found a computer under colleague Luis' desk which has 32 physical
+cores in it. I wrote a benchmark to see how the element throughput of the TBB
+solutions changes as the number of threads available to the thread-pool is
+increased from 1 to 32. In an ideal world, performance would scale directly
+with the number of cores doing work.</p>
+<img src="../images/use_all_the_cores.jpg" alt="Use all of the cores" width="60%" class="center">
+<h4><a class="header" href="#throughput-scaling-with-number-of-threads-32-core-machine" id="throughput-scaling-with-number-of-threads-32-core-machine">Throughput scaling with number of threads (32-core machine)</a></h4>
+<p><a href="../images/generated/amdahl_speedup.svg"><img src="../images/generated/amdahl_speedup.svg" alt="" /></a></p>
+<p>The black line shows the 'ideal' speedup that we should achieve if doubling the
+number of threads would halve the time taken to compute the elements of Pascal's
+Triangle.</p>
+<p>Upsettingly the reality is nowhere near as good as that. Poor old
+<a href="../solutions/Pixelf_TBB_arh.html">Pixelf_TBB_arh</a> is struggling to hit even a 7.5x
+speedup, even if we throw the full 32 cores at it. Looking at the way the graph
+is levelling out, it looks like even if we could bring 2048 cores to bear at the
+problem, we'd still not do better than an 8x speedup.</p>
+<p><a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html">Pixelf_TBB_scalable_alloc_arh</a>
+does a little better, but has pretty much given up once it's hit a 12x speedup.</p>
+<h2><a class="header" href="#theres-a-law-for-that" id="theres-a-law-for-that">There's a law for that</a></h2>
+<p>Consider an idealised model of the situation we've got. Every time we compute
+Pascal's triangle there are three distinct phases. First we have a bit of setup
+cost (initialising the thread pool and launching tasks), then we have the row
+tasks that can all run in parallel, and finally we have a teardown phase
+(deallocating memory, destroying threads etc...)</p>
+<p><img src="../images/concurrent_tasks.jpeg" alt="" /></p>
+<p>Assume T<sub>1</sub> is the total amount that work that needs doing. It's equal
+to the time taken to compute the whole triangle on a single core. Here it would
+be:</p>
+<p>need white backgrounds for this to work on dark mode
+<img src="../images/tasks_work.svg" alt="Equation for total work"></p>
+<p>Then T<sub>∞</sub> is the time taken if we had an infinite number of cores
+available. This is also known as the 'span' because it's equal to the length of
+the critical path through the task graph. In our case,</p>
+<img src="../images/tasks_span.svg" alt="Equation for span">
+<p>Given those two quantities, the speedup we can obtain through multi-threading
+is then bounded above by:</p>
+<img src="../images/speedup_bound.svg" alt="Equation for span">
+<p>For instance, if we had 100 units of work to do, and the critical path (span)
+was 5 units of work, then the maximum speedup we could achieve would be 20x.</p>
+<p>Another way of stating this is through
+<a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl's law</a>:</p>
+<img src="../images/amdahls_law.svg" alt="Equation for Amdahl's law">
+<p>Here f is the potion of the job which can be parallelised and p is the number of
+cores to use. There's a lovely plot showing how an algorithm scales with CPUs for
+various parallel portions on the <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Wikipedia Page on Amdahl's Law</a><sup class="footnote-reference"><a href="#1">1</a></sup>:</p>
+<p><a href="../images/amdahls_law_graph.svg"><img src="../images/amdahls_law_graph.svg" alt="" /></a></p>
+<p>The take-home point is this:</p>
+<blockquote>
+<p>Even if you manage to get as much as 95% of your algorithm to be executed in
+parallel, the maximum speedup you can <em>ever</em> achieve by increasing the number of
+processors is 20x.</p>
+</blockquote>
+<h2><a class="header" href="#improving-the-scaling-of-the-tbb-solutions" id="improving-the-scaling-of-the-tbb-solutions">Improving the scaling of the TBB solutions</a></h2>
+<p>Judging from the thread scaling benchmark results we saw,
+<a href="../solutions/Pixelf_TBB_arh.html">Pixelf_TBB_arh</a>'s 7.5x maximum speedup corresponds
+to a parallelised portion of ~87%. <a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html">Pixelf_TBB_scalable_alloc_arh</a> saw an upper bound of ~12x, which corresponds
+to ~92% of the algorithm running in parallel.</p>
+<p>The obvious thing to do is to look at ways of reducing the portion of the algorithm
+that must run in serial. We can't do anything about the TBB setup time, but we
+can do something about our other big bottle-neck: memory allocation. When the
+memory allocator is under high contention, some threads will be forced to wait
+in line. That congestion reduces the amount of parallelism we can achieve.</p>
+<p>As we did with <a href="../solutions/FlyingDesitter_arh.html">FlyingDesitter_arh</a> in the
+<a href="../loops/span.html">When everything looks like a nail...</a> section we can do away
+with almost all of the memory allocation and just do a single up-front
+allocation that will hold the whole triangle. I won't go into details here
+because it's very similar, but you can look at the code of <a href="../solutions/Pixelf_TBB_spans_arh.html">Pixelf_TBB_spans_arh</a>
+to see how it's done.</p>
+<h2><a class="header" href="#benchmark-results" id="benchmark-results">Benchmark results</a></h2>
+<h4><a class="header" href="#throughput-scaling-with-number-of-threads-32-core-machine-1" id="throughput-scaling-with-number-of-threads-32-core-machine-1">Throughput scaling with number of threads (32-core machine)</a></h4>
+<p><a href="../images/generated/amdahl2_speedup.svg"><img src="../images/generated/amdahl2_speedup.svg" alt="" /></a></p>
+<h4><a class="header" href="#time-to-generate-a-triangle" id="time-to-generate-a-triangle">Time to generate a triangle</a></h4>
+<p><a href="../images/generated/amdahl_generate_cpu_bench.svg"><img src="../images/generated/amdahl_generate_cpu_bench.svg" alt="" /></a></p>
+<h4><a class="header" href="#element-throughput" id="element-throughput">Element throughput</a></h4>
+<p><a href="../images/generated/amdahl_generate_throughput_log_scale_bench.svg"><img src="../images/generated/amdahl_generate_throughput_log_scale_bench.svg" alt="" /></a></p>
+<p><a href="../images/generated/amdahl_generate_throughput_linear_scale_bench.svg"><img src="../images/generated/amdahl_generate_throughput_linear_scale_bench.svg" alt="" /></a></p>
+<h2><a class="header" href="#descaling-the-barrel-before-we-scrape-it-further" id="descaling-the-barrel-before-we-scrape-it-further">Descaling the barrel before we scrape it further</a></h2>
+<p>Gratifyingly enough, we get much better CPU scaling from
+<a href="../solutions/Pixelf_TBB_spans_arh.html">Pixelf_TBB_spans_arh</a>. And of course the
+algorithm runs a bit better when you bin all the memory allocation. But it's
+<strong>still</strong> not even as good as the <a href="../solutions/Baseline.html">Baseline</a>
+raw loop solution, and <a href="../solutions/FlyingDesitter_arh.html">FlyingDesitter_arh</a>
+leaves them <em>all</em> grovelling in the dirt. By this point, I imagine you will have grimly
+steeled yourself against the possibility that there's another whole section
+coming up which finally uncovers the reason for the utter shabbiness of these
+multi-threaded solutions. Click on, if you can bear it.</p>
+<p><sup class="footnote-reference"><a href="#1">1</a></sup> Image by wikipedia user <a href="https://en.wikipedia.org/wiki/User:Daniels220">Daniels220</a>
+and licensed under Creative Commons Attribution-Share Alike 2.0 Unported.
+<a href="https://commons.wikimedia.org/wiki/File:AmdahlsLaw.svg">https://commons.wikimedia.org/wiki/File:AmdahlsLaw.svg</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../threads/allocators.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../threads/cleverness.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../threads/allocators.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../threads/cleverness.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

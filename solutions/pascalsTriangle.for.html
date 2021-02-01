@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>pascalsTriangle.for - Pascal's Triangle C++ coding challenge</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A discussion of C++ programming techniques through the medium of Pascal's Triangle">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../pascals_triangle.html">Pascal's Triangle Coding Challenge</a></li><li class="chapter-item expanded affix "><a href="../submissions.html">Submissions</a></li><li class="chapter-item expanded "><a href="../loops/loops.html"><strong aria-hidden="true">1.</strong> Loops make the world go round (and round...)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../loops/dont_do_unnecessary_work.html"><strong aria-hidden="true">1.1.</strong> Don't do more work than you need to?</a></li><li class="chapter-item expanded "><a href="../loops/memory_allocation_matters.html"><strong aria-hidden="true">1.2.</strong> Memory allocation matters</a></li><li class="chapter-item expanded "><a href="../loops/tracing_function_calls.html"><strong aria-hidden="true">1.3.</strong> Tracing function calls</a></li><li class="chapter-item expanded "><a href="../loops/cost_of_allocation.html"><strong aria-hidden="true">1.4.</strong> Cost of allocation</a></li><li class="chapter-item expanded "><a href="../loops/be_kind_to_your_cache.html"><strong aria-hidden="true">1.5.</strong> Be kind to your cache</a></li><li class="chapter-item expanded "><a href="../loops/span.html"><strong aria-hidden="true">1.6.</strong> When everything looks like a nail</a></li><li class="chapter-item expanded "><a href="../loops/summary.html"><strong aria-hidden="true">1.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../everything_is_a_matrix.html"><strong aria-hidden="true">2.</strong> Everything is a matrix</a></li><li class="chapter-item expanded "><a href="../stl_algorithms.html"><strong aria-hidden="true">3.</strong> STL algorithms</a></li><li class="chapter-item expanded "><a href="../threads/threads_to_the_rescue.html"><strong aria-hidden="true">4.</strong> Threads to the rescue!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads/async.html"><strong aria-hidden="true">4.1.</strong> Making a stink about std::async</a></li><li class="chapter-item expanded "><a href="../threads/work_stealing.html"><strong aria-hidden="true">4.2.</strong> Work stealing</a></li><li class="chapter-item expanded "><a href="../threads/allocators.html"><strong aria-hidden="true">4.3.</strong> Allocators</a></li><li class="chapter-item expanded "><a href="../threads/amdahls_law.html"><strong aria-hidden="true">4.4.</strong> Use moar cores!</a></li><li class="chapter-item expanded "><a href="../threads/cleverness.html"><strong aria-hidden="true">4.5.</strong> Clever ain't always fast</a></li><li class="chapter-item expanded "><a href="../threads/summary.html"><strong aria-hidden="true">4.6.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="../all_your_tests_are_terrible.html"><strong aria-hidden="true">5.</strong> All your tests are terrible!</a></li><li class="chapter-item expanded "><a href="../laziness.html"><strong aria-hidden="true">6.</strong> Laziness is the first step towards efficiency</a></li><li class="chapter-item expanded "><a href="../ranges.html"><strong aria-hidden="true">7.</strong> How to kill your compile times</a></li><li class="chapter-item expanded "><a href="../constexpr_cake.html"><strong aria-hidden="true">8.</strong> Have your constexpr cake and eat it</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../optimizer_magic.html"><strong aria-hidden="true">8.1.</strong> The optimizer is magic</a></li></ol></li><li class="chapter-item expanded "><a href="../property_based_testing.html"><strong aria-hidden="true">9.</strong> A surprise win for property based testing</a></li><li class="chapter-item expanded "><a href="../code_alignment_issues.html"><strong aria-hidden="true">10.</strong> A free 50% speed boost. Randomly.</a></li><li class="chapter-item expanded "><a href="../conclusion.html"><strong aria-hidden="true">11.</strong> Conclusion</a></li><li class="chapter-item expanded "><a href="../appendices/problem_statement.html"><strong aria-hidden="true">12.</strong> Appendix I - Original problem statement</a></li><li class="chapter-item expanded "><a href="../appendices/test_setup.html"><strong aria-hidden="true">13.</strong> Appendix II - Benchmark hardware and setup</a></li><li class="chapter-item expanded "><a href="../submissions_appendix.html"><strong aria-hidden="true">14.</strong> Appendix III - Submissions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../solutions/Baseline.html"><strong aria-hidden="true">14.1.</strong> Baseline</a></li><li class="chapter-item expanded "><a href="../solutions/AskingCrow.html"><strong aria-hidden="true">14.2.</strong> AskingCrow</a></li><li class="chapter-item expanded "><a href="../solutions/BumbleBeetle.html"><strong aria-hidden="true">14.3.</strong> BumbleBeetle</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine.html"><strong aria-hidden="true">14.4.</strong> CluelessWolverine</a></li><li class="chapter-item expanded "><a href="../solutions/CluelessWolverine2.html"><strong aria-hidden="true">14.5.</strong> CluelessWolverine2</a></li><li class="chapter-item expanded "><a href="../solutions/Fortran4Ever.html"><strong aria-hidden="true">14.6.</strong> Fortran4Ever</a></li><li class="chapter-item expanded "><a href="../solutions/simple_basic_solution.html"><strong aria-hidden="true">14.7.</strong> simple_basic_solution</a></li><li class="chapter-item expanded "><a href="../solutions/user_usery.html"><strong aria-hidden="true">14.8.</strong> user_usery</a></li><li class="chapter-item expanded "><a href="../solutions/FlyingDesitter_arh.html"><strong aria-hidden="true">14.9.</strong> FlyingDesitter_arh</a></li><li class="chapter-item expanded "><a href="../solutions/pascalsTriangle.for.html" class="active"><strong aria-hidden="true">14.10.</strong> pascalsTriangle.for</a></li><li class="chapter-item expanded "><a href="../solutions/GroovyZone.html"><strong aria-hidden="true">14.11.</strong> GroovyZone</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader.html"><strong aria-hidden="true">14.12.</strong> LordVader</a></li><li class="chapter-item expanded "><a href="../solutions/LordVader2_arh.html"><strong aria-hidden="true">14.13.</strong> LordVader2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf.html"><strong aria-hidden="true">14.14.</strong> Pixelf</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_arh.html"><strong aria-hidden="true">14.15.</strong> Pixelf_TBB_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_scalable_alloc_arh.html"><strong aria-hidden="true">14.16.</strong> Pixelf_TBB_scalable_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_boost_arh.html"><strong aria-hidden="true">14.17.</strong> Pixelf_TBB_boost_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_monotonic_alloc_arh.html"><strong aria-hidden="true">14.18.</strong> Pixelf_TBB_monotonic_alloc_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_single_array_arh.html"><strong aria-hidden="true">14.19.</strong> Pixelf_TBB_single_array_arh</a></li><li class="chapter-item expanded "><a href="../solutions/Pixelf_TBB_spans_arh.html"><strong aria-hidden="true">14.20.</strong> Pixelf_TBB_spans_arh</a></li><li class="chapter-item expanded "><a href="../solutions/DigitalGerbil.html"><strong aria-hidden="true">14.21.</strong> DigitalGerbil</a></li><li class="chapter-item expanded "><a href="../solutions/TerrificPhantom.html"><strong aria-hidden="true">14.22.</strong> TerrificPhantom</a></li><li class="chapter-item expanded "><a href="../solutions/Porpoison.html"><strong aria-hidden="true">14.23.</strong> Porpoison</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana.html"><strong aria-hidden="true">14.24.</strong> ArchBanana</a></li><li class="chapter-item expanded "><a href="../solutions/ArchBanana2_arh.html"><strong aria-hidden="true">14.25.</strong> ArchBanana2_arh</a></li><li class="chapter-item expanded "><a href="../solutions/EvilDoughnut.html"><strong aria-hidden="true">14.26.</strong> EvilDoughnut</a></li><li class="chapter-item expanded "><a href="../solutions/FrostyMongoose.html"><strong aria-hidden="true">14.27.</strong> FrostyMongoose</a></li><li class="chapter-item expanded "><a href="../solutions/Proteus.html"><strong aria-hidden="true">14.28.</strong> Proteus</a></li><li class="chapter-item expanded "><a href="../solutions/Erwin.html"><strong aria-hidden="true">14.29.</strong> Erwin</a></li><li class="chapter-item expanded "><a href="../solutions/FireFly.html"><strong aria-hidden="true">14.30.</strong> FireFly</a></li><li class="chapter-item expanded "><a href="../solutions/LightningHippo_arh.html"><strong aria-hidden="true">14.31.</strong> LightningHippo_arh</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pascal's Triangle C++ coding challenge</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#pascalstrianglefor" id="pascalstrianglefor">pascalsTriangle.for</a></h1>
+<pre><code class="language-shell">C
+C develop.for						       Version 1.0
+C	Paul Kyberd						       20 May 2020
+C 
+C     Version 1.0     Main routine to drive the building and display of
+C                     the triangle
+C
+C   V1.0      Call the build function and then print it out
+C
+	
+      program pascalsTriangle
+
+      real	version/1.0/
+      integer	flag, element
+
+      write (6,2000) version
+2000  format(' Programme to create Pascals triangle:: version  ', 
+     +  F4.2)
+
+      flag = triangleMake(8)
+      if (flag .LT. 0) write(6,3000) flag
+3000  format(1x,'triangle build error: return flag ',i4)
+
+      call trianglePrint()
+
+      element = triangleElement(5,3)
+      write(6,2010) element
+2010  format(1x, &quot;element is &quot;, i6)
+
+      flag = triangleMake(1)
+      if (flag .LT. 0) write(6,3000) flag
+      call trianglePrint()
+
+      flag = triangleMake(5)
+      if (flag .LT. 0) write(6,3000) flag
+      call trianglePrint()
+
+      flag = triangleMake(0)
+      if (flag .LT. 0) write(6,3000) flag
+      call trianglePrint()
+
+      end program pascalsTriangle
+C
+C  =======================================================================
+C
+      function triangleMake(rows)
+C
+C  Version 1.0        Paul Kyberd         10 May 2020
+C  
+C  V1.0          Create pascal's triangle with a given number of rows  
+C
+C   Call:    triangleMake(number of rows of the triangle)
+C            number of rows must be greater than zero and less than 100.
+C            by editting the store array the maximum size can be increased
+C
+C   Return:  0    success
+C            -1   fail
+C
+C   builds a triangle in a two dimensional array - this array is then passed
+C   between the functions and subroutines to allow access to the data structure
+C   allow pseudo OO encapsulation in a non OO language
+C
+       common / pt / pRows, store(100,100)
+       integer pRows, store
+
+       integer rows
+       
+       write (6,2010) rows
+2010   format(&quot; number of rows is &quot;, i4)
+       pRows = rows
+
+       if (rows .GT. 100) then
+         write (6, 3000) rows
+3000     format(1x, 'Number of rows ', i4, ' exceeds limits of 100')
+         triangleMaker = -10
+         return
+      endif
+
+C  In fortran 77 arrays are not initialised - elements contain random values
+C  and need initialising modern compilers fill with zeros. Since we can't create
+C  a new instance of the triangle, this is required to reset the initial conditions
+C  when a second or subsequent triangle is created
+
+      do MI=1, pRows
+        do MJ = 1, pRows
+          store(MI, MJ) = 0
+        enddo
+      enddo
+
+C
+      store(2,2) = 1 
+      do MI = 3, rows+1
+        nEntries = nEntries + 1
+        do MJ = 2, rows+1
+          store(MI, MJ) = store(MI-1, MJ-1) + store(MI-1, MJ)
+        enddo
+      enddo
+
+C
+      triangleMake = 0
+      return 
+      end function triangleMake
+C
+C =========================================================
+C
+      function triangleElement(row, column)
+C
+C  Version 1.0        Paul Kyberd         10 May 2020
+C  
+C  V1.0       Print out a particular element in terms of rows and
+C             columns. Check for a legal value
+C      
+C   Call:    trianglePrint() - must have already called triangleMake
+C
+C   Return:  &gt;0       requested element returned
+C            -1       illegal value of row or column
+C
+
+      common / pt / pRows, store(100,100)
+      integer pRows, store
+
+      integer row, column
+
+      if ((row .LE. 0) .OR. (row .GT. pRows)) then
+        write (6,3000)
+3000    format(1x,'Number of row illegal')
+        triangleElement = -1
+        return
+      else if ((column .LE. pRows) .OR. (column .GT. pRows)) then
+        write (6,3010)
+3010    format(1x,'Number of column illegal')
+        triangleElement = -1
+        return
+       endif
+
+      triangleElement = store(row+1, column+1)
+      return
+
+      end function
+
+C
+C =========================================================
+C
+      subroutine trianglePrint()
+C
+C  V1.0          Print out the pascal's triangle that has been created  
+C
+C   Call:    trianglePrint() - must have already called triangleMake
+C
+C   Return:  none
+C
+C   prints out the &quot;interesting part of the structure&quot;
+C   access to the data via the named common block
+
+      common / pt / pRows, store(100,100)
+      integer  pRows, store
+
+
+      write (6,2000)
+2000  format(1x,'Pascals triangle')
+
+      do MI=2, pRows+1
+        do MJ=2, pRows+1
+          write(6,2010) store(MI, MJ)
+2010      format (1x, I6, $)
+          if (store(MI, MJ+1) .EQ. 0) then
+            exit
+          endif
+        enddo
+        write (6,2020)
+2020    format()
+      enddo
+
+      write (6,2030)
+2030  format('end')
+      return
+      end subroutine trianglePrint
+C
+C  ======================================
+C  
+C  Notes:
+C   the print routine is to show that the triangle has been created
+C   there is no way to produce the data structure required in fortran 77
+C   triangleElement(row, Column) allows you to access a particular element
+C   of the triangle and effectively encapsulates the data (although don't
+C   let a fortran programmer use the word!) A similar function could be
+C   used to return a whole row
+</code></pre>
+<h2><a class="header" href="#authors-comments" id="authors-comments">Author's comments</a></h2>
+<blockquote>
+<p>Here is a fortran solution - it is compiled with the gcc compiler.</p>
+<pre><code class="language-bash">gfortran -o PT pascalsTriangle.for
+</code></pre>
+<p>It is just in F77 you only have a DO ... enddo and a Do While - the ability to iterate over
+an existing structure was certainly not there. Because you can do that you don't need
+to check for the zero. I can't iterate over a limited set of values and so need to find
+a way to check when the structure is essentially filled - which I do with the zero.</p>
+<p>Starting from a square array I was enamoured of the fact you could use zeros to delimit the interesting size.
+Lesson: your target language can affect the way you approach the problem and I immediately put the data in a square array. </p>
+<p>So the only reason for submitting mine - apart from a piece of fossilised code is
+to make the point that framing the problem in terms of the target language is likely
+to limit the range of algorithms you consider.</p>
+<p>The main routine simply acts as the driving routine, which is the test harness
+in the C++ programme.</p>
+<p>triangleMake - is the algorithm which makes the triangle in a standard 2d array.
+so at the end of that there is an array which looks like</p>
+<pre><code class="language-shell">0     0     0     0     0     0  ...
+0     1     0     0     0     0  ...
+0     1     1     0     0     0  ...
+0     1     2     1     0     0  ...
+...
+</code></pre>
+<p>The array is 100 by 100, there is no way to create a sized data structure in F77
+indeed no way of creating anything but an array.</p>
+<p>So this if you like is the generating algorithm.</p>
+<p>trianglePrint  - then scans this array and prints out the actual triangle as</p>
+<pre><code class="language-shell">1
+1   1
+1   2   1
+1   3   3   1
+etc
+</code></pre>
+<p>if you look it prints nothing if the triangle with no rows is requested and note
+nowhere do I treat 0 rows as a special case - quite proud of that.
+The code thus far could be ported pretty much line be line to C++</p>
+<p>If instead of printing out the value you created the data structure an element
+at a time, this would actually solve the problem as set. so replace lines
+164 and 165 by something to fill the data structure.</p>
+<p>I don't think I will do the translation into C++ - just noticed</p>
+<p>Algorithm relies on filling a 2d array of suitable size - this can be smaller
+than than the 100 by 100 I used if you can create memory structures on
+the fly. It must be at least 1 more row and 2 more columns than the triangle
+you need to create. Columns in fortran start at 1 and this is the convention
+I am using</p>
+<p>The elements of the array need to be zeroed. Then the second row and
+second column is set to 1. Then starting at row three every column from
+column 2 onward is filled by adding the same column from the row above
+and the previous column from the row above. This is repeated until the
+sum is equal to zero. Then the row is complete and the next row
+is started.
+The print starts every row at column 2 and starts at row 2 and continues
+along the row until it finds zero, which it doesn't print - because it starts
+at row 2 and loops until the size of pascal's triangle + 1, it never loops
+for size of 0 and thus there is no output as required.</p>
+<p>Fun problem - thinking back to fortran usually makes me nostalgic, but this
+problem makes the point, that the lack of data structures in the language is
+a real pain</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../solutions/FlyingDesitter_arh.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../solutions/GroovyZone.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../solutions/FlyingDesitter_arh.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../solutions/GroovyZone.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
